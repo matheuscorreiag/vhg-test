@@ -1,15 +1,15 @@
+import { OrderProduct } from '@order/domain/entities/order-product';
 import { randomUUID } from 'crypto';
 
 export enum OrderState {
   CART = 'CART',
   COMPLETED = 'COMPLETED',
 }
+
 export class Order {
   id?: string;
   userId: string;
-  productId: string;
-  quantity: number;
-  color: string;
+  products: OrderProduct[];
   state?: OrderState;
 
   constructor(props?: Order) {

@@ -1,6 +1,6 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateOrderDto } from '@order/application/dto/create-order';
+import { CreateOrderDto } from '@order/application/dto/create-order.dto';
 import { OrderMapper } from '@order/application/mappers/order.mapper';
 import { CreateOrderUseCase } from '@order/application/use-cases/create-order.use-case';
 
@@ -17,7 +17,8 @@ export class CreateOrderController {
 
   @Post()
   async createOrder(@Body() createOrderDto: CreateOrderDto) {
-    const mapper = OrderMapper.toDomain(createOrderDto);
+    const fakeUserId = '123';
+    const mapper = OrderMapper.toDomain(createOrderDto, fakeUserId);
 
     return await this.createOrderUseCase.execute(mapper);
   }

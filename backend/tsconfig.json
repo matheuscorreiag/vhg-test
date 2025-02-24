@@ -18,7 +18,8 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@product/*": ["src/product/*"]
+      "@product/*": ["src/product/*"],
+      "@order/*": ["src/order/*"]
     }
   }
 }

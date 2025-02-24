@@ -17,7 +17,8 @@ export class CreateProductController {
 
   @Post()
   async createProduct(@Body() createProductDto: CreateProductDto) {
-    const mapper = ProductMapper.toDomain(createProductDto);
+    const fakeImageUrl = 'AAA';
+    const mapper = ProductMapper.toDomain(createProductDto, fakeImageUrl);
 
     return await this.createProductUseCase.execute(mapper);
   }

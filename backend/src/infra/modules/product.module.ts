@@ -6,10 +6,11 @@ import { FindAllProductUseCase } from '@application/use-cases/product/find-all-p
 import { PrismaFindAllProductUseCase } from '@infra/db/prisma/use-cases/product/prisma-find-all-product.use-case';
 import { PrismaProductRepository } from '@infra/db/prisma/repositories/product/prisma-product.repository';
 import { ProductRepository } from '@domain/repositories/product/product.repository';
+import { FindAllProductController } from '@infra/controllers/product/find-all-product.controller';
 
 @Module({
   imports: [],
-  controllers: [CreateProductController],
+  controllers: [CreateProductController, FindAllProductController],
   providers: [
     {
       provide: ProductRepository.TOKEN,

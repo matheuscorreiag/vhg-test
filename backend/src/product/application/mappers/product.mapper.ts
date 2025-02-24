@@ -4,13 +4,13 @@ import { Product } from '@product/domain/entities/product';
 
 @Injectable()
 export class ProductMapper {
-  static toDomain(dto: CreateProductDto, imageUrl: string): Product {
+  static toDomain(dto: CreateProductDto): Product {
     return new Product({
       colors: dto.colors,
       description: dto.description,
       name: dto.name,
       price: dto.price,
-      imageUrl: imageUrl,
+      imageUrl: dto.imageUrl,
     });
   }
 }

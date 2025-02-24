@@ -31,4 +31,9 @@ export class CreateProductDto {
   @ValidateNested({ each: true })
   @IsString({ each: true })
   colors: string[];
+
+  @ApiProperty({ example: 'https://example.com/image.png' })
+  @IsNotEmpty()
+  @IsString()
+  imageUrl: string;
 }

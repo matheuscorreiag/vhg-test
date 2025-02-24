@@ -7,4 +7,5 @@ export const defaultProduct = new Product({
   price: 10.99,
   id: '123',
   rating: 0,
+  imageUrl: 'https://example.com/image.png',
 });

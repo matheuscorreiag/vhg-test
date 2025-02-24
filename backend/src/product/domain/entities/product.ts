@@ -7,7 +7,7 @@ export class Product {
   price: number;
   rating?: number;
   colors: string[];
-  imageUrl?: string;
+  imageUrl: string;
 
   constructor(props?: Product) {
     Object.assign(this, props);

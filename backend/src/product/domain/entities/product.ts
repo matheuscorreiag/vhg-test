@@ -6,7 +6,7 @@ export class Product {
   description: string;
   price: number;
   rating?: number;
-  color: string;
+  colors: string[];
 
   constructor(props?: Product) {
     Object.assign(this, props);

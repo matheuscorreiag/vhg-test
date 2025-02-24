@@ -6,7 +6,7 @@ import { Product } from '@product/domain/entities/product';
 export class ProductMapper {
   static toDomain(dto: CreateProductDto): Product {
     return new Product({
-      color: dto.color,
+      colors: dto.colors,
       description: dto.description,
       name: dto.name,
       price: dto.price,

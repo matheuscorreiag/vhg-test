@@ -1,12 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsArray,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  Min,
-  ValidateNested,
-} from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateProductDto {
   @ApiProperty({ example: 'Product 1' })
@@ -25,10 +18,9 @@ export class CreateProductDto {
   @Min(0)
   price: number;
 
-  @ApiProperty({ example: '#ff0000' })
+  @ApiProperty({ example: ['#ff0000'] })
   @IsNotEmpty()
   @IsArray()
-  @ValidateNested({ each: true })
   @IsString({ each: true })
   colors: string[];
 

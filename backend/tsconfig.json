@@ -20,7 +20,8 @@
     "paths": {
       "@product/*": ["src/product/*"],
       "@order/*": ["src/order/*"],
-      "@libs/*": ["src/libs/*"]
+      "@libs/*": ["src/libs/*"],
+      "@helpers/*": ["src/helpers/*"]
     }
   }
 }

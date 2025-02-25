@@ -43,6 +43,7 @@ export class PrismaOrderRepository implements OrderRepository {
   async findCurrentUserOrder(userId: string): Promise<Order> {
     const order = await this.prisma.order.findFirst({
       where: { userId },
+      include: { products: true },
     });
 
     if (!order) {

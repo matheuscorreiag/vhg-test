@@ -17,7 +17,7 @@ export class FindAllProductController {
   async findAllProducts() {
     try {
       const products = await this.findAllProductsUseCase.execute();
-      return ResponseHelper.success(products, 'Products found');
+      return ResponseHelper.success(products);
     } catch (error) {
       return ResponseHelper.error(error, 'Error finding products');
     }

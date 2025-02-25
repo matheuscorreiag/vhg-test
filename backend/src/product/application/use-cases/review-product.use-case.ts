@@ -1,7 +1,11 @@
+import { Inject } from '@nestjs/common';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 
 export class ReviewProductUseCase {
-  constructor(public readonly productRepository: ProductRepository) {}
+  constructor(
+    @Inject(ProductRepository.TOKEN)
+    public readonly productRepository: ProductRepository,
+  ) {}
 
   async execute(productId: string, rating: number): Promise<void> {
     const existingProduct = await this.productRepository.findById(productId);

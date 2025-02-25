@@ -1,6 +1,6 @@
 import { ReviewProductController } from '@product/infra/controllers/review-product.controller';
 import { mockProductRepository } from '@product/infra/mocks/repositories/mock-product.repository';
-import { mockReviewProductUseCase } from '@product/infra/mocks/use-cases/mock-review-order-use-case';
+import { mockReviewProductUseCase } from '@product/infra/mocks/use-cases/mock-review-order.use-case';
 
 describe('ReviewProductController', () => {
   const repository = new mockProductRepository();

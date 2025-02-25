@@ -1,6 +1,6 @@
 import { FindAllProductController } from '@product/infra/controllers/find-all-product.controller';
 import { mockProductRepository } from '@product/infra/mocks/repositories/mock-product.repository';
-import { mockFindAllProductUseCase } from '@product/infra/mocks/use-cases/mock-find-all-product-use-case';
+import { mockFindAllProductUseCase } from '@product/infra/mocks/use-cases/mock-find-all-product.use-case';
 
 describe('FindAllProductController', () => {
   const repository = new mockProductRepository();

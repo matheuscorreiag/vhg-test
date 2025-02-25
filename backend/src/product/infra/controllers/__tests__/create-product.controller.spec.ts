@@ -1,7 +1,7 @@
 import { CreateProductController } from '@product/infra/controllers/create-product.controller';
 import { defaultProduct } from '@product/infra/mocks';
 import { mockProductRepository } from '@product/infra/mocks/repositories/mock-product.repository';
-import { mockCreateProductUseCase } from '@product/infra/mocks/use-cases/mock-create-product-use-case';
+import { mockCreateProductUseCase } from '@product/infra/mocks/use-cases/mock-create-product.use-case';
 
 describe('CreateProductController', () => {
   const repository = new mockProductRepository();

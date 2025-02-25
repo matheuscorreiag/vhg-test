@@ -13,4 +13,7 @@ export class mockOrderRepository implements OrderRepository {
   save(order: Order): Promise<Order> {
     return Promise.resolve(order);
   }
+  findCurrentUserOrder(): Promise<Order> {
+    return Promise.resolve(new Order());
+  }
 }

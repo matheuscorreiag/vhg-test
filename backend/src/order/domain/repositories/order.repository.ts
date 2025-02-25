@@ -6,4 +6,5 @@ export abstract class OrderRepository {
   abstract findAll(): Promise<Order[]>;
   abstract findById(id: string): Promise<Order>;
   abstract save(order: Order): Promise<Order>;
+  abstract findCurrentUserOrder(userId: string): Promise<Order>;
 }

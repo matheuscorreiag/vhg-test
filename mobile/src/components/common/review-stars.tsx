@@ -10,7 +10,7 @@ export function ReviewStars({ rating }: ReviewStarsProps) {
   const amountOfStars = Array.from({ length: MAXIMUM_AMOUNT_OF_STARTS });
 
   return (
-    <View className="flex-row items-center">
+    <View className="flex-row items-center gap-x-0.5">
       {amountOfStars.map((_, index) => (
         <StarsIcon isChecked={index < rating} key={index} />
       ))}

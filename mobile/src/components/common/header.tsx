@@ -1,9 +1,21 @@
+import { BackButtonIcon } from "@/assets/back-button";
+import { useRouter } from "expo-router";
 import { SafeAreaView, Text, View } from "react-native";
 
-export function Header() {
+interface HeaderProps {
+  hasBackButton?: boolean;
+}
+
+export function Header({ hasBackButton = false }: HeaderProps) {
+  const router = useRouter();
   return (
     <SafeAreaView>
       <View className="flex-row items-center justify-center">
+        {hasBackButton && (
+          <View className="absolute left-5">
+            <BackButtonIcon onPress={() => router.back()} />
+          </View>
+        )}
         <Text className="text-lg text-center font-bold font-sans">
           My Demo <Text className="font-normal">App</Text>
         </Text>

@@ -1,9 +1,11 @@
 import { ReviewStars } from "@/src/components/common/review-stars";
-import { Text, View, ViewProps } from "react-native";
+import { Pressable, PressableProps, Text, View, ViewProps } from "react-native";
 import { Image } from "expo-image";
 import { twMerge } from "tailwind-merge";
+import { useRouter } from "expo-router";
 
-interface ProductCardProps extends ViewProps {
+interface ProductCardProps extends PressableProps {
+  id: string;
   title: string;
   price: number;
   rating: number;
@@ -18,23 +20,37 @@ export function ProductCard({
   className,
   ...props
 }: ProductCardProps) {
+  const router = useRouter();
+  const onPress = () => {
+    router.push("/product");
+  };
   return (
-    <View
-      className={twMerge("rounded-lg border border-cardBorder", className)}
+    <Pressable
+      onPress={onPress}
+      className={twMerge(
+        "rounded-lg border-2 border-cardBorder self-baseline",
+        className
+      )}
       {...props}
     >
       <Image
         contentFit="contain"
-        style={{ width: 200, height: 200 }}
+        style={{ width: 170, height: 170 }}
         // source={require("../../assets/images/default-product-image.png")}
         placeholder={require("../../assets/images/default-product-image.png")}
         placeholderContentFit="cover"
       />
-      <Text>{title}</Text>
-      <Text>{price}</Text>
-      <Text>{rating}</Text>
+      <View className="p-4 gap-y-2.5">
+        <Text
+          className="text-base font-semibold font-sans h-12"
+          numberOfLines={2}
+        >
+          {title}
+        </Text>
+        <Text className="font-bold font-sans text-xl">R${price}</Text>
 
-      <ReviewStars rating={rating} />
-    </View>
+        <ReviewStars rating={rating} />
+      </View>
+    </Pressable>
   );
 }

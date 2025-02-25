@@ -1,8 +1,7 @@
 import * as SplashScreen from "expo-splash-screen";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Header } from "@/src/components/common/header";
 import { Stack } from "expo-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   useFonts,
   NotoSans_400Regular,
@@ -47,8 +46,9 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <Stack screenOptions={{ header: () => <Header /> }}>
+    <Stack screenOptions={{ header: () => <Header hasBackButton /> }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="product/index" />
     </Stack>
   );
 }

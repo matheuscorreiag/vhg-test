@@ -7,7 +7,7 @@ import { OrderRepository } from '@order/domain/repositories/order.repository';
 export class PrismaCreateOrderUseCase implements CreateOrderUseCase {
   constructor(
     @Inject(OrderRepository.TOKEN)
-    private readonly orderRepository: OrderRepository,
+    public readonly orderRepository: OrderRepository,
   ) {}
 
   execute(order: Order): Promise<Order> {

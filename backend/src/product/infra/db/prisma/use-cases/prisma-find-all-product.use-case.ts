@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { FindAllProductUseCase } from '@product/application/use-cases/find-all-products.use-case';
+import { FindAllProductsUseCase } from '@product/application/use-cases/find-all-products.use-case';
 import { Product } from '@product/domain/entities/product';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 
 @Injectable()
-export class PrismaFindAllProductUseCase implements FindAllProductUseCase {
+export class PrismaFindAllProductUseCase implements FindAllProductsUseCase {
   constructor(
     @Inject(ProductRepository.TOKEN)
-    private readonly productRepository: ProductRepository,
+    public readonly productRepository: ProductRepository,
   ) {}
 
   execute(): Promise<Product[]> {

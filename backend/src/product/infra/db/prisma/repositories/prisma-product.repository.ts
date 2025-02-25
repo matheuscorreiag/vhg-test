@@ -15,4 +15,7 @@ export class PrismaProductRepository implements ProductRepository {
   save(product: Product): Promise<Product> {
     return Promise.resolve(product);
   }
+  update(productId: string, product: Product): Promise<Product> {
+    return Promise.resolve(product);
+  }
 }

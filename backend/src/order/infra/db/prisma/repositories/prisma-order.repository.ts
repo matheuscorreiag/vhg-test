@@ -15,4 +15,7 @@ export class PrismaOrderRepository implements OrderRepository {
   save(order: Order): Promise<Order> {
     return Promise.resolve(order);
   }
+  findCurrentUserOrder(userId: string): Promise<Order> {
+    return Promise.resolve(new Order());
+  }
 }

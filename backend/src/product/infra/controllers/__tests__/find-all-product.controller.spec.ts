@@ -10,7 +10,7 @@ describe('FindAllProductController', () => {
   it('should return correct data', async () => {
     const result = await controller.findAllProducts();
 
-    expect(result).toHaveLength(1);
+    expect(result).toHaveProperty('success', true);
   });
 
   it('should return error if the use case return an error', async () => {

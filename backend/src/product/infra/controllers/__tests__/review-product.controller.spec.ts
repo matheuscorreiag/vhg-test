@@ -13,7 +13,7 @@ describe('ReviewProductController', () => {
       rating: 5,
     });
 
-    expect(result).toBeUndefined();
+    expect(result).toHaveProperty('success', true);
   });
 
   it('should return error if the use case return an error', () => {

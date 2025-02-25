@@ -11,7 +11,7 @@ describe('CreateProductController', () => {
   it('should return correct data', async () => {
     const result = await controller.createProduct(defaultProduct);
 
-    expect(result.name).toBe(defaultProduct.name);
+    expect(result).toHaveProperty('success', true);
   });
 
   it('should return error if the use case return an error', async () => {

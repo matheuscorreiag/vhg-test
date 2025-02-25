@@ -1,6 +1,7 @@
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { FilterIcon } from "@/src/components/icons/filter";
+import { ProductCard } from "@/src/components/product-card";
 import { ScrollView } from "react-native";
 
 export default function HomeScreen() {
@@ -10,7 +11,14 @@ export default function HomeScreen() {
         <FilterIcon />
       </PageHeader>
 
-      <ScrollView></ScrollView>
+      <ScrollView>
+        <ProductCard
+          title="Swag Labs Backpack"
+          price={29.99}
+          rating={4}
+          imageUrl=""
+        />
+      </ScrollView>
     </PageContainer>
   );
 }

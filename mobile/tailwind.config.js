@@ -7,6 +7,10 @@ module.exports = {
       fontFamily: {
         sans: ["Noto Sans", "sans-serif"],
       },
+      colors: {
+        cardBorder: "#EDEDED",
+        starColor: "#FFCD48",
+      },
     },
   },
   plugins: [],

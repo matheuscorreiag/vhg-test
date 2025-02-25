@@ -14,7 +14,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <View className={twMerge(className)} {...props}>
-      <Text className="text-2xl font-bold font-sans">{title}</Text>
+      <Text className="text-2xl font-bold font-sans mb-6">{title}</Text>
       {children}
     </View>
   );

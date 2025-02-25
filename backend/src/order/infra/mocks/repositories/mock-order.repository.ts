@@ -1,4 +1,5 @@
 import { Order } from '@order/domain/entities/order';
+import { OrderProduct } from '@order/domain/entities/order-product';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
 
 export class mockOrderRepository implements OrderRepository {
@@ -13,7 +14,18 @@ export class mockOrderRepository implements OrderRepository {
   save(order: Order): Promise<Order> {
     return Promise.resolve(order);
   }
+
   findCurrentUserOrder(): Promise<Order> {
     return Promise.resolve(new Order());
+  }
+
+  findCurrentOrderOrCreate(): Promise<Order> {
+    return Promise.resolve(new Order());
+  }
+  saveItemOnCurrentOrder(): Promise<Order> {
+    return Promise.resolve(new Order());
+  }
+  updateItemOnCurrentOrder(): Promise<OrderProduct> {
+    return Promise.resolve(new OrderProduct());
   }
 }

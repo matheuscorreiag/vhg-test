@@ -10,7 +10,7 @@ export class FindCurrentOrderUseCase {
   ) {}
 
   async execute(userId: string): Promise<Order> {
-    const order = await this.orderRepository.findCurrentUserOrder(userId);
+    const order = await this.orderRepository.findCurrentOrderOrCreate(userId);
 
     if (!order) {
       throw new Error('Order not found');

@@ -1,12 +1,12 @@
 import { Order } from '@order/domain/entities/order.js';
-import { CreateOrderUseCase } from '@order/application/use-cases/create-order.use-case.js';
-import { CreateOrderDto } from '@order/application/dto/create-order.dto';
 import { Inject } from '@nestjs/common';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
 import { OrderMapper } from '@order/application/mappers/order.mapper';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
+import { AddItemToOrderUseCase } from '@order/application/use-cases/add-item-to-order.use-case';
+import { AddItemToOrderDto } from '@order/application/dto/add-item-to-order.dto';
 
-export class mockCreateOrderUseCase implements CreateOrderUseCase {
+export class mockAddItemToOrderUseCase implements AddItemToOrderUseCase {
   constructor(
     @Inject(OrderRepository.TOKEN)
     public readonly orderRepository: OrderRepository,
@@ -14,16 +14,14 @@ export class mockCreateOrderUseCase implements CreateOrderUseCase {
     public readonly productRepository: ProductRepository,
   ) {}
 
-  async execute(body: CreateOrderDto, userId: string): Promise<Order> {
-    const toDomain = OrderMapper.toDomain(body, userId);
-    const productIds = body.products.map((product) => product.productId);
+  async execute(body: AddItemToOrderDto, userId: string): Promise<Order> {
+    const dbProducts = await this.productRepository.findById(body.productId);
 
-    const dbProducts = await this.productRepository.findByIds(productIds);
-    console.log(dbProducts);
-
-    if (productIds.length < dbProducts) {
-      throw new Error('One or more products are not available');
+    if (!dbProducts) {
+      throw new Error('Product not found');
     }
+
+    const toDomain = OrderMapper.toDomain(body, userId);
 
     return this.orderRepository.save(toDomain);
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Order, OrderState } from '@order/domain/entities/order';
-import { CreateOrderDto } from '@order/application/dto/create-order.dto';
+import { CreateOrderProductDto } from '@order/application/dto/create-order-product.dto';
 import { OrderProductMapper } from '@order/application/mappers/order-product.mapper';
+import { Order, OrderState } from '@order/domain/entities/order';
 import {
   Order as PrismaOrderModel,
   OrderProduct as PrismaOrderProductModel,
@@ -9,12 +9,11 @@ import {
 
 @Injectable()
 export class OrderMapper {
-  static toDomain(dto: CreateOrderDto, userId: string): Order {
-    const orderProductMapper = OrderProductMapper.toDomain(dto.products);
-
+  static toDomain(dto: CreateOrderProductDto, userId: string): Order {
+    const orderProductMapper = OrderProductMapper.toDomain(dto);
     return new Order({
       userId: userId,
-      products: orderProductMapper,
+      products: [orderProductMapper],
     });
   }
 

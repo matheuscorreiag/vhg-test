@@ -1,4 +1,3 @@
-import { CreateOrderController } from '@order/infra/controllers/create-order.controller';
 import { defaultOrder } from '@order/infra/mocks';
 import { mockOrderRepository } from '@order/infra/mocks/repositories/mock-order.repository';
 import { mockCreateOrderUseCase } from '@order/infra/mocks/use-cases/mock-create-order.use-case';

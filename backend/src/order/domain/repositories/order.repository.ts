@@ -1,3 +1,4 @@
+import { OrderProduct } from '@order/domain/entities/order-product';
 import { Order } from '../entities/order';
 
 export abstract class OrderRepository {
@@ -6,5 +7,16 @@ export abstract class OrderRepository {
   abstract findAll(): Promise<Order[]>;
   abstract findById(id: string): Promise<Order>;
   abstract save(order: Order): Promise<Order>;
-  abstract findCurrentUserOrder(userId: string): Promise<Order>;
+  abstract saveItemOnCurrentOrder(
+    orderId: string,
+    item: OrderProduct,
+  ): Promise<Order>;
+  abstract findCurrentOrderOrCreate(
+    userId?: string,
+    orderId?: string,
+  ): Promise<Order>;
+  abstract updateItemOnCurrentOrder(
+    orderId: string,
+    item: OrderProduct,
+  ): Promise<OrderProduct>;
 }

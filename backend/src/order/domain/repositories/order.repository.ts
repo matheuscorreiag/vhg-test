@@ -1,12 +1,12 @@
 import { OrderProduct } from '@order/domain/entities/order-product';
-import { Order } from '../entities/order';
+import { Order, OrderState } from '../entities/order';
 
 export abstract class OrderRepository {
   static TOKEN = 'OrderRepositoryToken';
 
   abstract findAll(): Promise<Order[]>;
   abstract findById(id: string): Promise<Order>;
-  abstract save(order: Order): Promise<Order>;
+  abstract save(order: Order, userId: string): Promise<Order>;
   abstract saveItemOnCurrentOrder(
     orderId: string,
     item: OrderProduct,
@@ -19,4 +19,9 @@ export abstract class OrderRepository {
     orderId: string,
     item: OrderProduct,
   ): Promise<OrderProduct>;
+  abstract updateOrderState(
+    userId: string,
+    orderId: string,
+    state: OrderState,
+  ): Promise<Order>;
 }

@@ -42,10 +42,11 @@ export class PrismaOrderRepository implements OrderRepository {
     return OrderMapper.prismaToDomain(order);
   }
 
-  async save(order: Order): Promise<Order> {
+  async save(order: Order, userId: string): Promise<Order> {
+    console.log(order, userId);
     const savedOrder = await this.prisma.order.create({
       data: {
-        userId: order.userId,
+        userId,
         state: order.state,
         products: {
           create: order.products.map((product) => ({
@@ -68,7 +69,7 @@ export class PrismaOrderRepository implements OrderRepository {
     });
 
     if (!order) {
-      return this.save(new Order({ userId, products: [] }));
+      return await this.save(new Order({ userId, products: [] }), userId);
     }
 
     return OrderMapper.prismaToDomain(order);
@@ -123,5 +124,21 @@ export class PrismaOrderRepository implements OrderRepository {
         orderId,
       },
     });
+  }
+
+  async updateOrderState(
+    userId: string,
+    orderId: string,
+    state: OrderState,
+  ): Promise<Order> {
+    const updatedOrder = await this.prisma.order.update({
+      where: { id: orderId, userId },
+      data: {
+        state,
+      },
+      include: { products: true },
+    });
+
+    return OrderMapper.prismaToDomain(updatedOrder);
   }
 }

@@ -23,6 +23,6 @@ export class mockAddItemToOrderUseCase implements AddItemToOrderUseCase {
 
     const toDomain = OrderMapper.toDomain(body, userId);
 
-    return this.orderRepository.save(toDomain);
+    return this.orderRepository.save(toDomain, userId);
   }
 }

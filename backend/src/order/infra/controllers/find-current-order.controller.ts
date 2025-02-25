@@ -1,6 +1,7 @@
 import { ResponseHelper } from '@helpers/responses';
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { FindCurrentOrderUseCase } from '@order/application/use-cases/find-current-order.use-case';
+import { Request } from 'express';
 
 @Controller({
   path: 'orders',
@@ -11,11 +12,14 @@ export class FindCurrentOrderController {
     private readonly findCurrentOrderUseCase: FindCurrentOrderUseCase,
   ) {}
 
-  async findCurrentOrder() {
+  @Get('/current')
+  async findCurrentOrder(@Req() request: Request) {
     try {
-      const currentOrder = await this.findCurrentOrderUseCase.execute('123');
+      const currentOrder = await this.findCurrentOrderUseCase.execute(
+        request.userPayload.id,
+      );
 
-      return ResponseHelper.success(currentOrder, 'Order created');
+      return ResponseHelper.success(currentOrder);
     } catch (error) {
       return ResponseHelper.error(error, 'Error creating order');
     }

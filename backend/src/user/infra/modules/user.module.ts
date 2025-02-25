@@ -7,6 +7,7 @@ import { FindUserByEmailUseCase } from '@user/application/use-cases/find-user-by
 import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from '@user/infra/guards/auth.guard';
+import { LoginUserController } from '@user/infra/controllers/login-user.controller';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { AuthGuard } from '@user/infra/guards/auth.guard';
       signOptions: { expiresIn: '60s' },
     }),
   ],
-  controllers: [CreateUserController],
+  controllers: [CreateUserController, LoginUserController],
   providers: [
     {
       provide: APP_GUARD,

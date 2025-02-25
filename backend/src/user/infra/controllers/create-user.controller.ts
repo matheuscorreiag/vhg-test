@@ -27,7 +27,7 @@ export class CreateUserController {
         token: await this.jwtService.signAsync(payload),
       });
     } catch (error) {
-      return { error: error.message };
+      return ResponseHelper.error(error.message, 'Error trying to create user');
     }
   }
 }

@@ -33,7 +33,11 @@ export class PrismaOrderRepository implements OrderRepository {
         userId: order.userId,
         state: order.state,
         products: {
-          connect: order.products.map((product) => ({ id: product.id })),
+          create: order.products.map((product) => ({
+            productId: product.productId,
+            quantity: product.quantity,
+            color: product.color,
+          })),
         },
       },
       include: { products: true },

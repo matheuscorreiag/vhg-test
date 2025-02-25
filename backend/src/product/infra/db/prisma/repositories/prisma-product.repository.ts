@@ -57,4 +57,14 @@ export class PrismaProductRepository implements ProductRepository {
 
     return ProductMapper.prismaToDomain(updatedProduct);
   }
+
+  findByIds(productIds: string[]): Promise<number> {
+    return this.prisma.product.count({
+      where: {
+        id: {
+          in: productIds,
+        },
+      },
+    });
+  }
 }

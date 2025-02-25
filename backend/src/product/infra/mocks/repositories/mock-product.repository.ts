@@ -17,4 +17,7 @@ export class mockProductRepository implements ProductRepository {
   update(productId: string, product: Product): Promise<Product> {
     return Promise.resolve(product);
   }
+  findByIds(): Promise<number> {
+    return Promise.resolve(2);
+  }
 }

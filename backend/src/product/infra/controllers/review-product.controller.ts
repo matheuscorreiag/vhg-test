@@ -11,9 +11,9 @@ export class ReviewProductController {
   constructor(private readonly reviewProductUseCase: ReviewProductUseCase) {}
 
   @Put('/:productId')
-  reviewProduct(@Body() reviewProductDto: ReviewProductDto) {
+  async reviewProduct(@Body() reviewProductDto: ReviewProductDto) {
     try {
-      this.reviewProductUseCase.execute(
+      await this.reviewProductUseCase.execute(
         reviewProductDto.productId,
         reviewProductDto.rating,
       );

@@ -21,7 +21,8 @@
       "@product/*": ["src/product/*"],
       "@order/*": ["src/order/*"],
       "@libs/*": ["src/libs/*"],
-      "@helpers/*": ["src/helpers/*"]
+      "@helpers/*": ["src/helpers/*"],
+      "@user/*": ["src/user/*"]
     }
   }
 }

@@ -6,6 +6,7 @@ const config: Config.InitialOptions = {
     '^@order/(.*)$': '<rootDir>/src/order/$1',
     '^@libs/(.*)$': '<rootDir>/src/libs/$1',
     '^@helpers/(.*)$': '<rootDir>/src/helpers/$1',
+    '^@user/(.*)$': '<rootDir>/src/user/$1',
   },
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '.',

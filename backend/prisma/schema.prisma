@@ -6,19 +6,23 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 
 model Product {
-    id          String @id @default(uuid())
+    id          String   @id @default(uuid())
     name        String
     description String
     price       Int
-    rating      Int
+    rating      Int      @default(0)
     imageUrl    String
+    colors      String[]
 
     orderProduct OrderProduct[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@map("products")
 }
@@ -33,6 +37,9 @@ model OrderProduct {
     product   Product @relation(fields: [productId], references: [id])
     productId String
 
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
     @@map("order_products")
 }
 
@@ -42,6 +49,9 @@ model Order {
 
     products OrderProduct[]
     state    OrderState     @default(CART)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@map("orders")
 }

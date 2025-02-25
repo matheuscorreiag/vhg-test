@@ -19,7 +19,8 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@product/*": ["src/product/*"],
-      "@order/*": ["src/order/*"]
+      "@order/*": ["src/order/*"],
+      "@libs/*": ["src/libs/*"]
     }
   }
 }

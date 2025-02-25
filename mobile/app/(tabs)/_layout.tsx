@@ -1,16 +1,19 @@
 import React from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
-import { Pressable } from "react-native";
+import { Tabs } from "expo-router";
 import { Header } from "@/src/components/header";
+import { MenuIcon } from "@/components/icons/menu";
+import { CartIcon } from "@/components/icons/cart";
+import { HomeIcon } from "@/components/icons/home";
+import { Text } from "react-native";
+import { gradientColor } from "@/src/constants/colors";
 
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+type TabBarIconProps = {
+  label: string;
+};
+
+function TabBarLabel({ label }: TabBarIconProps) {
+  return <Text className="text-red-600">{label}</Text>;
 }
-
 export default function TabLayout() {
   return (
     <Tabs
@@ -21,28 +24,29 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/two" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: "Catálogo",
+          tabBarLabel: () => <TabBarLabel label="Catálogo" />,
+          tabBarIcon: ({ focused }) => (
+            <HomeIcon color={focused ? gradientColor.start : "#000"} />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="cart"
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarLabel: () => <TabBarLabel label="Carrinho" />,
+          tabBarIcon: ({ focused }) => (
+            <CartIcon color={focused ? gradientColor.start : "#000"} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="menu"
+        options={{
+          tabBarLabel: () => <TabBarLabel label="Menu" />,
+          tabBarIcon: ({ focused }) => (
+            <MenuIcon color={focused ? gradientColor.start : "#000"} />
+          ),
         }}
       />
     </Tabs>

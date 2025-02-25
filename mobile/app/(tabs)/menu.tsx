@@ -1,9 +1,10 @@
+import { PageContainer } from "@/src/components/common/page-container";
 import { Text, View } from "react-native";
 
 export default function MenuScreen() {
   return (
-    <View>
+    <PageContainer>
       <Text>Tab3</Text>
-    </View>
+    </PageContainer>
   );
 }

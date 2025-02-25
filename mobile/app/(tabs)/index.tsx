@@ -1,9 +1,16 @@
-import { Text, View } from "react-native";
+import { PageContainer } from "@/src/components/common/page-container";
+import { PageHeader } from "@/src/components/common/page-header";
+import { FilterIcon } from "@/src/components/icons/filter";
+import { ScrollView } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <View className="w-24 h-24 bg-red-600">
-      <Text>Tab One</Text>
-    </View>
+    <PageContainer>
+      <PageHeader title="Produtos" className="flex-row justify-between">
+        <FilterIcon />
+      </PageHeader>
+
+      <ScrollView></ScrollView>
+    </PageContainer>
   );
 }

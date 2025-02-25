@@ -1,6 +1,6 @@
 import * as SplashScreen from "expo-splash-screen";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Header } from "@/src/components/header";
+import { Header } from "@/src/components/common/header";
 import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import {

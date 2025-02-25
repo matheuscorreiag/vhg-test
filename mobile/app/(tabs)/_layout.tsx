@@ -1,10 +1,10 @@
 import React from "react";
 import { Tabs } from "expo-router";
-import { Header } from "@/src/components/header";
-import { CartIcon } from "@/components/icons/cart";
+import { Header } from "@/src/components/common/header";
+import { CartIcon } from "@/src/components/icons/cart";
 import { Text } from "react-native";
-import { HomeIcon } from "@/components/icons/home";
-import { MenuIcon } from "@/components/icons/menu";
+import { HomeIcon } from "@/src/components/icons/home";
+import { MenuIcon } from "@/src/components/icons/menu";
 
 type TabBarIconProps = {
   label: string;

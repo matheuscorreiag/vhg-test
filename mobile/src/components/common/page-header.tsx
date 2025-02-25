@@ -1,0 +1,21 @@
+import { ReactNode } from "react";
+import { Text, View, ViewProps } from "react-native";
+import { twMerge } from "tailwind-merge";
+
+interface PageHeaderProps extends ViewProps {
+  title: string;
+  children?: ReactNode;
+}
+export function PageHeader({
+  title,
+  className,
+  children,
+  ...props
+}: PageHeaderProps) {
+  return (
+    <View className={twMerge(className)} {...props}>
+      <Text className="text-2xl font-bold font-sans">{title}</Text>
+      {children}
+    </View>
+  );
+}

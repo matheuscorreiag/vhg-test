@@ -29,6 +29,7 @@ export class PrismaOrderRepository implements OrderRepository {
   async save(order: Order): Promise<Order> {
     const savedOrder = await this.prisma.order.create({
       data: {
+        id: order.id,
         userId: order.userId,
         state: order.state,
         products: {

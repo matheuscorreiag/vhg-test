@@ -5,10 +5,16 @@ import { PrismaProductRepository } from '@product/infra/db/prisma/repositories/p
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 import { FindAllProductController } from '@product/infra/controllers/find-all-product.controller';
 import { FindAllProductsUseCase } from '@product/application/use-cases/find-all-products.use-case';
+import { FindProductByIdController } from '@product/infra/controllers/find-product-by-id-controller';
+import { FindProductByIdUseCase } from '@product/application/use-cases/find-product-by-id.use.case';
 
 @Module({
   imports: [],
-  controllers: [CreateProductController, FindAllProductController],
+  controllers: [
+    CreateProductController,
+    FindAllProductController,
+    FindProductByIdController,
+  ],
   providers: [
     {
       provide: ProductRepository.TOKEN,
@@ -16,6 +22,7 @@ import { FindAllProductsUseCase } from '@product/application/use-cases/find-all-
     },
     CreateProductUseCase,
     FindAllProductsUseCase,
+    FindProductByIdUseCase,
   ],
 })
 export class ProductModule {}

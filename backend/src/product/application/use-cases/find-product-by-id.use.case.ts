@@ -5,7 +5,7 @@ import { ProductRepository } from '@product/domain/repositories/product.reposito
 export class FindProductByIdUseCase {
   constructor(
     @Inject(ProductRepository.TOKEN)
-    private readonly productRepository: ProductRepository,
+    public readonly productRepository: ProductRepository,
   ) {}
 
   execute(productId: string): Promise<Product> {

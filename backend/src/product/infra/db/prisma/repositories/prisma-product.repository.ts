@@ -29,6 +29,7 @@ export class PrismaProductRepository implements ProductRepository {
   async save(product: Product): Promise<Product> {
     const savedProduct = await this.prisma.product.create({
       data: {
+        id: product.id,
         name: product.name,
         description: product.description,
         price: product.price,

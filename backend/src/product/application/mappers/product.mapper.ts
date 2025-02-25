@@ -17,6 +17,7 @@ export class ProductMapper {
 
   static prismaToDomain(product: PrismaProductModel): Product {
     return new Product({
+      id: product.id,
       description: product.description,
       name: product.name,
       price: product.price,
@@ -29,6 +30,7 @@ export class ProductMapper {
   static prismaArrayToDomain(products: PrismaProductModel[]): Product[] {
     return products.map((product) => {
       return new Product({
+        id: product.id,
         rating: product.rating,
         description: product.description,
         name: product.name,

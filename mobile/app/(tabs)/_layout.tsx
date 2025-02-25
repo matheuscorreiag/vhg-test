@@ -1,18 +1,17 @@
 import React from "react";
 import { Tabs } from "expo-router";
 import { Header } from "@/src/components/header";
-import { MenuIcon } from "@/components/icons/menu";
 import { CartIcon } from "@/components/icons/cart";
-import { HomeIcon } from "@/components/icons/home";
 import { Text } from "react-native";
-import { gradientColor } from "@/src/constants/colors";
+import { HomeIcon } from "@/components/icons/home";
+import { MenuIcon } from "@/components/icons/menu";
 
 type TabBarIconProps = {
   label: string;
 };
 
 function TabBarLabel({ label }: TabBarIconProps) {
-  return <Text className="text-red-600">{label}</Text>;
+  return <Text className="text-sm">{label}</Text>;
 }
 export default function TabLayout() {
   return (
@@ -26,27 +25,21 @@ export default function TabLayout() {
         options={{
           title: "Catálogo",
           tabBarLabel: () => <TabBarLabel label="Catálogo" />,
-          tabBarIcon: ({ focused }) => (
-            <HomeIcon color={focused ? gradientColor.start : "#000"} />
-          ),
+          tabBarIcon: ({ focused }) => <HomeIcon isFocused={focused} />,
         }}
       />
       <Tabs.Screen
         name="cart"
         options={{
           tabBarLabel: () => <TabBarLabel label="Carrinho" />,
-          tabBarIcon: ({ focused }) => (
-            <CartIcon color={focused ? gradientColor.start : "#000"} />
-          ),
+          tabBarIcon: ({ focused }) => <CartIcon isFocused={focused} />,
         }}
       />
       <Tabs.Screen
         name="menu"
         options={{
           tabBarLabel: () => <TabBarLabel label="Menu" />,
-          tabBarIcon: ({ focused }) => (
-            <MenuIcon color={focused ? gradientColor.start : "#000"} />
-          ),
+          tabBarIcon: ({ focused }) => <MenuIcon isFocused={focused} />,
         }}
       />
     </Tabs>

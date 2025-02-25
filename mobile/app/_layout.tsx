@@ -9,7 +9,7 @@ import {
   NotoSans_600SemiBold,
   NotoSans_700Bold,
 } from "@expo-google-fonts/noto-sans";
-import "../src/globals/global.css";
+import "../global.css";
 import "react-native-reanimated";
 
 export { ErrorBoundary } from "expo-router";
@@ -19,11 +19,6 @@ export const unstable_settings = {
 };
 
 SplashScreen.preventAutoHideAsync();
-
-SplashScreen.setOptions({
-  duration: 5000,
-  fade: true,
-});
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({

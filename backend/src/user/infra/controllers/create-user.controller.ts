@@ -2,6 +2,7 @@ import { ResponseHelper } from '@helpers/responses';
 import { Body, Controller, Post } from '@nestjs/common';
 import { CreateUserDto } from '@user/application/dto/create-user.dto';
 import { CreateUserUseCase } from '@user/application/use-cases/create-user.use-case';
+import { Public } from '@user/infra/decorators/public.decorators';
 
 @Controller({
   path: 'users',
@@ -10,6 +11,7 @@ import { CreateUserUseCase } from '@user/application/use-cases/create-user.use-c
 export class CreateUserController {
   constructor(private readonly createUserUseCase: CreateUserUseCase) {}
 
+  @Public()
   @Post('/signup')
   async createUser(@Body() createUserDto: CreateUserDto) {
     try {

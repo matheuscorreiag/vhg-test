@@ -1,21 +1,59 @@
+import { PrismaService } from '@libs/prisma.service';
 import { Injectable } from '@nestjs/common';
+import { ProductMapper } from '@product/application/mappers/product.mapper';
 import { Product } from '@product/domain/entities/product';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 
 @Injectable()
 export class PrismaProductRepository implements ProductRepository {
-  findAll(): Promise<Product[]> {
-    return Promise.resolve([]);
+  constructor(private prisma: PrismaService) {}
+
+  async findAll(): Promise<Product[]> {
+    const products = await this.prisma.product.findMany();
+    return ProductMapper.prismaArrayToDomain(products);
   }
 
-  findById(): Promise<Product> {
-    return Promise.resolve(new Product());
+  async findById(id: string): Promise<Product> {
+    const product = await this.prisma.product.findUnique({
+      where: { id },
+      include: { orderProduct: true },
+    });
+
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    return ProductMapper.prismaToDomain(product);
   }
 
-  save(product: Product): Promise<Product> {
-    return Promise.resolve(product);
+  async save(product: Product): Promise<Product> {
+    const savedProduct = await this.prisma.product.create({
+      data: {
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        colors: product.colors,
+      },
+      include: { orderProduct: true },
+    });
+
+    return ProductMapper.prismaToDomain(savedProduct);
   }
-  update(productId: string, product: Product): Promise<Product> {
-    return Promise.resolve(product);
+
+  async update(productId: string, product: Product): Promise<Product> {
+    const updatedProduct = await this.prisma.product.update({
+      where: { id: productId },
+      data: {
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        colors: product.colors,
+      },
+      include: { orderProduct: true },
+    });
+
+    return ProductMapper.prismaToDomain(updatedProduct);
   }
 }

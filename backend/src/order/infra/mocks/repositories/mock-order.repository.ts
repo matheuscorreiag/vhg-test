@@ -28,4 +28,7 @@ export class mockOrderRepository implements OrderRepository {
   updateItemOnCurrentOrder(): Promise<OrderProduct> {
     return Promise.resolve(new OrderProduct());
   }
+  deleteOrderProduct(): Promise<void> {
+    return Promise.resolve();
+  }
 }

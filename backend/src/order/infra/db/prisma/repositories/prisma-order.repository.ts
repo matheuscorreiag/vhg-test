@@ -99,7 +99,6 @@ export class PrismaOrderRepository implements OrderRepository {
     orderId: string,
     item: OrderProduct,
   ): Promise<OrderProduct> {
-    console.log(item);
     const updatedOrder = await this.prisma.orderProduct.update({
       where: {
         id: item.id,
@@ -112,5 +111,17 @@ export class PrismaOrderRepository implements OrderRepository {
     });
 
     return OrderProductMapper.prismaToDomain([updatedOrder])[0];
+  }
+
+  async deleteOrderProduct(
+    orderId: string,
+    orderProductId: string,
+  ): Promise<void> {
+    await this.prisma.orderProduct.delete({
+      where: {
+        id: orderProductId,
+        orderId,
+      },
+    });
   }
 }

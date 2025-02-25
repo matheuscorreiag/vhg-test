@@ -40,7 +40,7 @@ export class AddItemToOrderUseCase {
         if (product.productId === body.productId) {
           return {
             ...product,
-            quantity: body.quantity,
+            ...body,
           };
         }
 

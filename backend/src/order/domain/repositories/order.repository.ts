@@ -24,4 +24,5 @@ export abstract class OrderRepository {
     orderId: string,
     state: OrderState,
   ): Promise<Order>;
+  abstract deleteOrderProduct(orderProductId: string): Promise<void>;
 }

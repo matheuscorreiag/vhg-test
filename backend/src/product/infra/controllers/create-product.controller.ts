@@ -18,7 +18,6 @@ export class CreateProductController {
     try {
       const mapper = ProductMapper.toDomain(createProductDto);
 
-      console.log(mapper);
       const createdProduct = await this.createProductUseCase.execute(mapper);
 
       return ResponseHelper.success(createdProduct, 'Product created');

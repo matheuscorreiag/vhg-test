@@ -5,7 +5,7 @@ export class ResponseHelper {
     return {
       success: true,
       message,
-      data,
+      ...(data ? { data } : {}),
     };
   }
 

@@ -9,6 +9,8 @@ import { FindCurrentOrderController } from '@order/infra/controllers/find-curren
 import { UpdateOrderStateController } from '@order/infra/controllers/update-order-state.controller';
 import { FindCurrentOrderUseCase } from '@order/application/use-cases/find-current-order.use-case';
 import { UpdateOrderStateUseCase } from '@order/application/use-cases/update-order-state.use-case';
+import { RemoveProductFromOrderController } from '@order/infra/controllers/remove-product-from-order.controller';
+import { RemoveProductFromOrderUseCase } from '@order/application/use-cases/remove-product-from-order.use-case';
 
 @Module({
   imports: [],
@@ -16,6 +18,7 @@ import { UpdateOrderStateUseCase } from '@order/application/use-cases/update-ord
     AddItemToOrderController,
     FindCurrentOrderController,
     UpdateOrderStateController,
+    RemoveProductFromOrderController,
   ],
   providers: [
     {
@@ -29,6 +32,7 @@ import { UpdateOrderStateUseCase } from '@order/application/use-cases/update-ord
     FindCurrentOrderUseCase,
     UpdateOrderStateUseCase,
     AddItemToOrderUseCase,
+    RemoveProductFromOrderUseCase,
   ],
 })
 export class OrderModule {}

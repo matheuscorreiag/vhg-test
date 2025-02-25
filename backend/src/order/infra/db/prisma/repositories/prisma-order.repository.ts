@@ -43,7 +43,6 @@ export class PrismaOrderRepository implements OrderRepository {
   }
 
   async save(order: Order, userId: string): Promise<Order> {
-    console.log(order, userId);
     const savedOrder = await this.prisma.order.create({
       data: {
         userId,
@@ -114,14 +113,10 @@ export class PrismaOrderRepository implements OrderRepository {
     return OrderProductMapper.prismaToDomain([updatedOrder])[0];
   }
 
-  async deleteOrderProduct(
-    orderId: string,
-    orderProductId: string,
-  ): Promise<void> {
+  async deleteOrderProduct(orderProductId: string): Promise<void> {
     await this.prisma.orderProduct.delete({
       where: {
         id: orderProductId,
-        orderId,
       },
     });
   }

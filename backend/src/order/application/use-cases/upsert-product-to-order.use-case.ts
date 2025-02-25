@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { AddItemToOrderDto } from '@order/application/dto/add-item-to-order.dto';
+import { UpsertProductToOrderDto } from '@order/application/dto/upsert-product-to-order.dto';
 import { OrderProductMapper } from '@order/application/mappers/order-product.mapper';
 import { Order } from '@order/domain/entities/order';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 
 @Injectable()
-export class AddItemToOrderUseCase {
+export class UpsertProductToOrderUseCase {
   constructor(
     @Inject(OrderRepository.TOKEN)
     public readonly orderRepository: OrderRepository,
@@ -15,7 +15,7 @@ export class AddItemToOrderUseCase {
   ) {}
 
   async execute(
-    body: AddItemToOrderDto,
+    body: UpsertProductToOrderDto,
     userId: string,
   ): Promise<Order | void> {
     const dbProduct = await this.productRepository.findById(body.productId);
@@ -49,7 +49,7 @@ export class AddItemToOrderUseCase {
 
       const updatedOrderProduct = currentOrder.products[productAlreadyOnOrder];
 
-      await this.orderRepository.updateItemOnCurrentOrder(
+      await this.orderRepository.updateProductOnCurrentOrder(
         currentOrder.id,
         updatedOrderProduct,
       );
@@ -61,7 +61,7 @@ export class AddItemToOrderUseCase {
 
     const orderProduct = OrderProductMapper.toDomain(body);
 
-    return await this.orderRepository.saveItemOnCurrentOrder(
+    return await this.orderRepository.saveProductOnCurrentOrder(
       currentOrder.id,
       orderProduct,
     );

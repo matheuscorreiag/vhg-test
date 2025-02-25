@@ -7,17 +7,17 @@ export abstract class OrderRepository {
   abstract findAll(): Promise<Order[]>;
   abstract findById(id: string): Promise<Order>;
   abstract save(order: Order, userId: string): Promise<Order>;
-  abstract saveItemOnCurrentOrder(
+  abstract saveProductOnCurrentOrder(
     orderId: string,
-    item: OrderProduct,
+    orderProduct: OrderProduct,
   ): Promise<Order>;
   abstract findCurrentOrderOrCreate(
     userId?: string,
     orderId?: string,
   ): Promise<Order>;
-  abstract updateItemOnCurrentOrder(
+  abstract updateProductOnCurrentOrder(
     orderId: string,
-    item: OrderProduct,
+    orderProduct: OrderProduct,
   ): Promise<OrderProduct>;
   abstract updateOrderState(
     userId: string,

@@ -1,20 +1,28 @@
-import { AddItemToOrderController } from '@order/infra/controllers/add-item-to-order.controller';
+import { UpsertProductToOrderController } from '@order/infra/controllers/upsert-product-to-order.controller';
+import { mockRequest } from '@order/infra/mocks';
 import { mockOrderRepository } from '@order/infra/mocks/repositories/mock-order.repository';
-import { mockAddItemToOrderUseCase } from '@order/infra/mocks/use-cases/mock-add-item-to-order.use-case';
+import { mockUpsertProductToOrderUseCase } from '@order/infra/mocks/use-cases/mock-upsert-product-to-order.use-case';
 import { mockProductRepository } from '@product/infra/mocks/repositories/mock-product.repository';
+import { Request } from 'express';
 
-describe('AddItemController', () => {
+describe('UpsertProductController', () => {
   const productRepository = new mockProductRepository();
   const repository = new mockOrderRepository();
-  const useCase = new mockAddItemToOrderUseCase(repository, productRepository);
-  const controller = new AddItemToOrderController(useCase);
+  const useCase = new mockUpsertProductToOrderUseCase(
+    repository,
+    productRepository,
+  );
+  const controller = new UpsertProductToOrderController(useCase);
 
   it('should return correct data', async () => {
-    const result = await controller.addItemToOrder({
-      color: 'red',
-      productId: '123',
-      quantity: 1,
-    });
+    const result = await controller.upsertProductToOrder(
+      {
+        color: 'red',
+        productId: '123',
+        quantity: 1,
+      },
+      mockRequest as Request,
+    );
 
     expect(result!.success).toBe(true);
   });
@@ -25,11 +33,14 @@ describe('AddItemController', () => {
     });
 
     expect(
-      controller.addItemToOrder({
-        color: 'red',
-        productId: '123',
-        quantity: 1,
-      }),
+      controller.upsertProductToOrder(
+        {
+          color: 'red',
+          productId: '123',
+          quantity: 1,
+        },
+        mockRequest as Request,
+      ),
     ).rejects.toThrow('Error');
   });
 });

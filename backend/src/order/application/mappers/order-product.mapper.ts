@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { AddItemToOrderDto } from '@order/application/dto/add-item-to-order.dto';
+import { UpsertProductToOrderDto } from '@order/application/dto/upsert-product-to-order.dto';
 import { OrderProduct } from '@order/domain/entities/order-product';
 import { OrderProduct as PrismaOrderProductModel } from '@prisma/client';
 
 @Injectable()
 export class OrderProductMapper {
-  static toDomain(dto: AddItemToOrderDto): OrderProduct {
+  static toDomain(dto: UpsertProductToOrderDto): OrderProduct {
     return new OrderProduct({
       color: dto.color,
       productId: dto.productId,

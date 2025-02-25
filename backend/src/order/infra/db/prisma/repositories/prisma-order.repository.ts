@@ -74,18 +74,18 @@ export class PrismaOrderRepository implements OrderRepository {
     return OrderMapper.prismaToDomain(order);
   }
 
-  async saveItemOnCurrentOrder(
+  async saveProductOnCurrentOrder(
     orderId: string,
-    item: OrderProduct,
+    product: OrderProduct,
   ): Promise<Order> {
     const updatedOrder = await this.prisma.order.update({
       where: { id: orderId },
       data: {
         products: {
           create: {
-            productId: item.productId,
-            quantity: item.quantity,
-            color: item.color,
+            productId: product.productId,
+            quantity: product.quantity,
+            color: product.color,
           },
         },
       },
@@ -95,18 +95,18 @@ export class PrismaOrderRepository implements OrderRepository {
     return OrderMapper.prismaToDomain(updatedOrder);
   }
 
-  async updateItemOnCurrentOrder(
+  async updateProductOnCurrentOrder(
     orderId: string,
-    item: OrderProduct,
+    product: OrderProduct,
   ): Promise<OrderProduct> {
     const updatedOrder = await this.prisma.orderProduct.update({
       where: {
-        id: item.id,
+        id: product.id,
         orderId,
       },
       data: {
-        color: item.color,
-        quantity: item.quantity,
+        color: product.color,
+        quantity: product.quantity,
       },
     });
 

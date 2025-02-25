@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
-export class AddItemToOrderDto {
+export class UpsertProductToOrderDto {
   @IsNotEmpty()
   @IsString()
   productId: string;

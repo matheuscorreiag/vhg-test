@@ -3,8 +3,8 @@ import { PrismaOrderRepository } from '@order/infra/db/prisma/repositories/prism
 import { OrderRepository } from '@order/domain/repositories/order.repository';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 import { PrismaProductRepository } from '@product/infra/db/prisma/repositories/prisma-product.repository';
-import { AddItemToOrderController } from '@order/infra/controllers/add-item-to-order.controller';
-import { AddItemToOrderUseCase } from '@order/application/use-cases/add-item-to-order.use-case';
+import { UpsertProductToOrderController } from '@order/infra/controllers/upsert-product-to-order.controller';
+import { UpsertProductToOrderUseCase } from '@order/application/use-cases/upsert-product-to-order.use-case';
 import { FindCurrentOrderController } from '@order/infra/controllers/find-current-order.controller';
 import { UpdateOrderStateController } from '@order/infra/controllers/update-order-state.controller';
 import { FindCurrentOrderUseCase } from '@order/application/use-cases/find-current-order.use-case';
@@ -15,7 +15,7 @@ import { RemoveProductFromOrderUseCase } from '@order/application/use-cases/remo
 @Module({
   imports: [],
   controllers: [
-    AddItemToOrderController,
+    UpsertProductToOrderController,
     FindCurrentOrderController,
     UpdateOrderStateController,
     RemoveProductFromOrderController,
@@ -31,7 +31,7 @@ import { RemoveProductFromOrderUseCase } from '@order/application/use-cases/remo
     },
     FindCurrentOrderUseCase,
     UpdateOrderStateUseCase,
-    AddItemToOrderUseCase,
+    UpsertProductToOrderUseCase,
     RemoveProductFromOrderUseCase,
   ],
 })

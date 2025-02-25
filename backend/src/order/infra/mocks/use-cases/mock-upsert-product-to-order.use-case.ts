@@ -3,10 +3,12 @@ import { Inject } from '@nestjs/common';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
 import { OrderMapper } from '@order/application/mappers/order.mapper';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
-import { AddItemToOrderUseCase } from '@order/application/use-cases/add-item-to-order.use-case';
-import { AddItemToOrderDto } from '@order/application/dto/add-item-to-order.dto';
+import { UpsertProductToOrderDto } from '@order/application/dto/upsert-product-to-order.dto';
+import { UpsertProductToOrderUseCase } from '@order/application/use-cases/upsert-product-to-order.use-case';
 
-export class mockAddItemToOrderUseCase implements AddItemToOrderUseCase {
+export class mockUpsertProductToOrderUseCase
+  implements UpsertProductToOrderUseCase
+{
   constructor(
     @Inject(OrderRepository.TOKEN)
     public readonly orderRepository: OrderRepository,
@@ -14,7 +16,7 @@ export class mockAddItemToOrderUseCase implements AddItemToOrderUseCase {
     public readonly productRepository: ProductRepository,
   ) {}
 
-  async execute(body: AddItemToOrderDto, userId: string): Promise<Order> {
+  async execute(body: UpsertProductToOrderDto, userId: string): Promise<Order> {
     const dbProducts = await this.productRepository.findById(body.productId);
 
     if (!dbProducts) {

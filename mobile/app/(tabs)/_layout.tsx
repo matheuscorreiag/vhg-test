@@ -11,7 +11,7 @@ type TabBarIconProps = {
 };
 
 function TabBarLabel({ label }: TabBarIconProps) {
-  return <Text className="text-sm">{label}</Text>;
+  return <Text className="text-sm font-sans">{label}</Text>;
 }
 export default function TabLayout() {
   return (

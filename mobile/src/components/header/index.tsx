@@ -4,7 +4,7 @@ export function Header() {
   return (
     <SafeAreaView>
       <View className="flex-row items-center justify-center">
-        <Text className="text-lg text-center font-bold">
+        <Text className="text-lg text-center font-bold font-sans">
           My Demo <Text className="font-normal">App</Text>
         </Text>
       </View>

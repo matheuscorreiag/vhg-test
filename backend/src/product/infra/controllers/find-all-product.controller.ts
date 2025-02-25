@@ -1,6 +1,6 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { FindAllProductUseCase } from '@product/application/use-cases/find-all-product.use-case';
+import { FindAllProductsUseCase } from '@product/application/use-cases/find-all-products.use-case';
 
 @ApiTags('Product')
 @Controller({
@@ -9,12 +9,11 @@ import { FindAllProductUseCase } from '@product/application/use-cases/find-all-p
 })
 export class FindAllProductController {
   constructor(
-    @Inject(FindAllProductUseCase.TOKEN)
-    private readonly findAllProductUseCase: FindAllProductUseCase,
+    private readonly findAllProductsUseCase: FindAllProductsUseCase,
   ) {}
 
   @Get()
   async findAllProducts() {
-    return await this.findAllProductUseCase.execute();
+    return await this.findAllProductsUseCase.execute();
   }
 }

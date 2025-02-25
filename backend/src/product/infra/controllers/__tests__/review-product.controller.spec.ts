@@ -1,8 +1,10 @@
 import { ReviewProductController } from '@product/infra/controllers/review-product.controller';
+import { mockProductRepository } from '@product/infra/mocks/repositories/mock-product.repository';
 import { mockReviewProductUseCase } from '@product/infra/mocks/use-cases/mock-review-order-use-case';
 
 describe('ReviewProductController', () => {
-  const useCase = new mockReviewProductUseCase();
+  const repository = new mockProductRepository();
+  const useCase = new mockReviewProductUseCase(repository);
   const controller = new ReviewProductController(useCase);
 
   it('should return correct data', async () => {

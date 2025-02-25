@@ -1,7 +1,10 @@
 import { Product } from '@product/domain/entities/product';
+import { ProductRepository } from '@product/domain/repositories/product.repository';
 
-export abstract class FindProductByIdUseCase {
-  static TOKEN = 'FindProductByIdUseCaseToken';
+export class FindProductByIdUseCase {
+  constructor(private readonly productRepository: ProductRepository) {}
 
-  abstract execute(productId: string): Promise<Product>;
+  execute(productId: string): Promise<Product> {
+    return this.productRepository.findById(productId);
+  }
 }

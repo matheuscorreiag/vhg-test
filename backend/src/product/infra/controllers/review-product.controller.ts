@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, Put } from '@nestjs/common';
+import { Body, Controller, Put } from '@nestjs/common';
 import { ReviewProductDto } from '@product/application/dto/review-product.dto';
 import { ReviewProductUseCase } from '@product/application/use-cases/review-product.use-case';
 
@@ -7,10 +7,7 @@ import { ReviewProductUseCase } from '@product/application/use-cases/review-prod
   version: '1',
 })
 export class ReviewProductController {
-  constructor(
-    @Inject(ReviewProductUseCase.TOKEN)
-    private readonly reviewProductUseCase: ReviewProductUseCase,
-  ) {}
+  constructor(private readonly reviewProductUseCase: ReviewProductUseCase) {}
 
   @Put('/:productId')
   reviewProduct(@Body() reviewProductDto: ReviewProductDto) {

@@ -1,7 +1,10 @@
 import { Product } from '@product/domain/entities/product';
+import { ProductRepository } from '@product/domain/repositories/product.repository';
 
-export abstract class CreateProductUseCase {
-  static TOKEN = 'CreateProductUseCaseToken';
+export class CreateProductUseCase {
+  constructor(public readonly productRepository: ProductRepository) {}
 
-  abstract execute(product: Product): Promise<Product>;
+  execute(product: Product): Promise<Product> {
+    return this.productRepository.save(product);
+  }
 }

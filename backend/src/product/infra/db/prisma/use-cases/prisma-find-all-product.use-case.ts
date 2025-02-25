@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { FindAllProductUseCase } from '@product/application/use-cases/find-all-product.use-case';
+import { FindAllProductUseCase } from '@product/application/use-cases/find-all-products.use-case';
 import { Product } from '@product/domain/entities/product';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 

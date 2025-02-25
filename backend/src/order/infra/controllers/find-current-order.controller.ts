@@ -1,7 +1,6 @@
-import { ResponseHelper } from '@helpers/responses/success';
+import { ResponseHelper } from '@helpers/responses';
 import { Controller } from '@nestjs/common';
 import { FindCurrentOrderUseCase } from '@order/application/use-cases/find-current-order.use-case';
-import { Order } from '@order/domain/entities/order';
 
 @Controller({
   path: 'orders',
@@ -16,7 +15,7 @@ export class FindCurrentOrderController {
     try {
       const currentOrder = await this.findCurrentOrderUseCase.execute('123');
 
-      return ResponseHelper.success<Order>(currentOrder, 'Order created');
+      return ResponseHelper.success(currentOrder, 'Order created');
     } catch (error) {
       return ResponseHelper.error(error, 'Error creating order');
     }

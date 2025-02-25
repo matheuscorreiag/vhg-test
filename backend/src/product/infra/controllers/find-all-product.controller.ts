@@ -1,3 +1,4 @@
+import { ResponseHelper } from '@helpers/responses';
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { FindAllProductsUseCase } from '@product/application/use-cases/find-all-products.use-case';
@@ -14,6 +15,11 @@ export class FindAllProductController {
 
   @Get()
   async findAllProducts() {
-    return await this.findAllProductsUseCase.execute();
+    try {
+      const products = await this.findAllProductsUseCase.execute();
+      return ResponseHelper.success(products, 'Products found');
+    } catch (error) {
+      return ResponseHelper.error(error, 'Error finding products');
+    }
   }
 }

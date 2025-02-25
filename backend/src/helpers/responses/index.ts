@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class ResponseHelper {
-  static success<T>(data: T, message = 'Success') {
+  static success(data: any, message = 'Success') {
     return {
       success: true,
       message,

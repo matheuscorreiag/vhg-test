@@ -2,8 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateOrderDto } from '@order/application/dto/create-order.dto';
 import { CreateOrderUseCase } from '@order/application/use-cases/create-order.use-case';
-import { ResponseHelper } from '@helpers/responses/success';
-import { Order } from '@order/domain/entities/order';
+import { ResponseHelper } from '@helpers/responses';
 
 @ApiTags('Order')
 @Controller({
@@ -21,7 +20,7 @@ export class CreateOrderController {
         '123',
       );
 
-      return ResponseHelper.success<Order>(createdOrder, 'Order created');
+      return ResponseHelper.success(createdOrder, 'Order created');
     } catch (error) {
       return ResponseHelper.error(error, 'Error creating order');
     }

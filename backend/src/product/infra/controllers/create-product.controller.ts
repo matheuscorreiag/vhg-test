@@ -1,3 +1,4 @@
+import { ResponseHelper } from '@helpers/responses';
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateProductDto } from '@product/application/dto/create-product.dto';
@@ -14,8 +15,13 @@ export class CreateProductController {
 
   @Post()
   async createProduct(@Body() createProductDto: CreateProductDto) {
-    const mapper = ProductMapper.toDomain(createProductDto);
+    try {
+      const mapper = ProductMapper.toDomain(createProductDto);
+      const createdProduct = await this.createProductUseCase.execute(mapper);
 
-    return await this.createProductUseCase.execute(mapper);
+      return ResponseHelper.success(createdProduct, 'Product created');
+    } catch (error) {
+      return ResponseHelper.error(error, 'Error creating product');
+    }
   }
 }

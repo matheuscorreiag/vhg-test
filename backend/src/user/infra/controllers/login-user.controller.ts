@@ -19,12 +19,17 @@ export class LoginUserController {
   @Post('/login')
   async loginUser(@Body() loginUserDto: LoginUserDto) {
     try {
-      const user = await this.findUserByEmail.execute(loginUserDto.email);
-      const payload = { email: user.email, id: user.id };
+      const user = await this.findUserByEmail.execute(
+        loginUserDto.email,
+        loginUserDto.password,
+      );
 
       return ResponseHelper.success({
         ...user,
-        token: await this.jwtService.signAsync(payload),
+        token: await this.jwtService.signAsync({
+          email: user.email,
+          id: user.id,
+        }),
       });
     } catch (error) {
       return ResponseHelper.error(error.message, 'Error trying to login');

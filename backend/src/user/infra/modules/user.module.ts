@@ -8,6 +8,10 @@ import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from '@user/infra/guards/auth.guard';
 import { LoginUserController } from '@user/infra/controllers/login-user.controller';
+import { Compare } from '@user/application/protocols/security/compare.security';
+import { BcryptCompare } from '@user/infra/protocols/security/bcrypt/bcrypt.compare';
+import { Encrypter } from '@user/application/protocols/security/encrypter.security';
+import { BcryptEncrypter } from '@user/infra/protocols/security/bcrypt/bcrypt.encrypter';
 
 @Module({
   imports: [
@@ -26,6 +30,14 @@ import { LoginUserController } from '@user/infra/controllers/login-user.controll
     {
       provide: UserRepository.TOKEN,
       useClass: PrismaUserRepository,
+    },
+    {
+      provide: Compare.TOKEN,
+      useClass: BcryptCompare,
+    },
+    {
+      provide: Encrypter.TOKEN,
+      useClass: BcryptEncrypter,
     },
     CreateUserUseCase,
     FindUserByEmailUseCase,

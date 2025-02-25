@@ -16,6 +16,7 @@ export class UserMapper {
     return new User({
       id: user.id,
       email: user.email,
+      password: user.password,
     });
   }
 }

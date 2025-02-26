@@ -10,6 +10,8 @@ import {
 } from "@expo-google-fonts/noto-sans";
 import "../global.css";
 import "react-native-reanimated";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/src/libs/react-query";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -48,20 +50,24 @@ const headerNoShowRoutes = ["menu-modal"];
 
 function RootLayoutNav() {
   return (
-    <Stack
-      screenOptions={{
-        header: ({ route }) =>
-          !headerNoShowRoutes.includes(route.name) && <Header hasBackButton />,
-      }}
-    >
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="product/index" />
-      <Stack.Screen
-        name="menu-modal"
-        options={{
-          presentation: "containedTransparentModal",
+    <QueryClientProvider client={queryClient}>
+      <Stack
+        screenOptions={{
+          header: ({ route }) =>
+            !headerNoShowRoutes.includes(route.name) && (
+              <Header hasBackButton />
+            ),
         }}
-      />
-    </Stack>
+      >
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="product/index" />
+        <Stack.Screen
+          name="menu-modal"
+          options={{
+            presentation: "containedTransparentModal",
+          }}
+        />
+      </Stack>
+    </QueryClientProvider>
   );
 }

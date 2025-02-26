@@ -3,24 +3,26 @@ import { twMerge } from "tailwind-merge";
 
 interface PageContainerProps extends ViewProps {
   children: React.ReactNode;
-  skipSafeArea?: boolean;
+  safeArea?: boolean;
 }
 export function PageContainer({
   children,
   className,
-  skipSafeArea,
+  safeArea = true,
   ...props
 }: PageContainerProps) {
-  if (skipSafeArea) {
+  if (!safeArea)
     return (
-      <View className={twMerge("px-4 mt-7", className)} {...props}>
+      <View className={twMerge("flex-1 h-full w-full", className)} {...props}>
         {children}
       </View>
     );
-  }
   return (
-    <SafeAreaView>
-      <View className={twMerge("px-4 mt-7", className)} {...props}>
+    <SafeAreaView className="flex-1 h-full w-full">
+      <View
+        className={twMerge("px-4 mt-7 flex-1 h-full w-full", className)}
+        {...props}
+      >
         {children}
       </View>
     </SafeAreaView>

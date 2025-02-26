@@ -1,12 +1,7 @@
 import { PageContainer } from "@/src/components/common/page-container";
 import { useRouter } from "expo-router";
-import {
-  Pressable,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Pressable, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MenuModal() {
   const router = useRouter();
@@ -17,7 +12,7 @@ export default function MenuModal() {
       onPress={() => router.back()}
     >
       <View className="flex-1 bg-white w-5/6">
-        <PageContainer>
+        <PageContainer safeArea>
           <Text>Menu</Text>
         </PageContainer>
       </View>

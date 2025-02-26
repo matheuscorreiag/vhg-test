@@ -6,6 +6,7 @@ import { Text, View } from "react-native";
 
 export default function CartScreen() {
   const router = useRouter();
+
   return (
     <PageContainer className="flex-1 items-center justify-center">
       <View className="mb-12">

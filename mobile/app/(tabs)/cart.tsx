@@ -1,11 +1,11 @@
 import { GradientButton } from "@/src/components/common/gradient-button";
 import { PageContainer } from "@/src/components/common/page-container";
 import { CartIcon } from "@/src/components/icons/cart";
-import { gradientColor } from "@/src/constants/colors";
-import { LinearGradient } from "expo-linear-gradient";
-import { Button, Pressable, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Text, View } from "react-native";
 
 export default function CartScreen() {
+  const router = useRouter();
   return (
     <PageContainer className="flex-1 items-center justify-center">
       <View className="mb-12">
@@ -18,7 +18,11 @@ export default function CartScreen() {
         sua compra.
       </Text>
 
-      <GradientButton title="Go Shopping" />
+      <GradientButton
+        title="Go Shopping"
+        variant="fit"
+        onPress={() => router.push("/")}
+      />
     </PageContainer>
   );
 }

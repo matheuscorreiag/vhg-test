@@ -1,7 +1,7 @@
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
+import { ProductCard } from "@/src/components/common/product-card";
 import { FilterIcon } from "@/src/components/icons/filter";
-import { ProductCard } from "@/src/components/product-card";
 import { ScrollView, View } from "react-native";
 
 const products = [

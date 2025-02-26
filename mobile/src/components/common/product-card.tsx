@@ -1,5 +1,5 @@
 import { ReviewStars } from "@/src/components/common/review-stars";
-import { Pressable, PressableProps, Text, View, ViewProps } from "react-native";
+import { Pressable, PressableProps, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "expo-router";
@@ -37,7 +37,7 @@ export function ProductCard({
         contentFit="contain"
         style={{ width: 170, height: 170 }}
         // source={require("../../assets/images/default-product-image.png")}
-        placeholder={require("../../assets/images/default-product-image.png")}
+        placeholder={require("../../../assets/images/default-product-image.png")}
         placeholderContentFit="cover"
       />
       <View className="p-4 gap-y-2.5">

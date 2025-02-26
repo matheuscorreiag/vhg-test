@@ -21,9 +21,11 @@ export function ProductCard({
   ...props
 }: ProductCardProps) {
   const router = useRouter();
+
   const onPress = () => {
-    router.push("/product");
+    router.push("/cart/product");
   };
+
   return (
     <Pressable
       onPress={onPress}

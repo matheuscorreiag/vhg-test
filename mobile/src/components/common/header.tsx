@@ -1,12 +1,13 @@
 import { BackButtonIcon } from "@/assets/back-button";
-import { useRouter } from "expo-router";
+import { Href, useRouter } from "expo-router";
 import { SafeAreaView, Text, View } from "react-native";
 
 interface HeaderProps {
   hasBackButton?: boolean;
+  goBackRoute?: Href;
 }
 
-export function Header({ hasBackButton = false }: HeaderProps) {
+export function Header({ hasBackButton = false, goBackRoute }: HeaderProps) {
   const router = useRouter();
   return (
     <SafeAreaView>

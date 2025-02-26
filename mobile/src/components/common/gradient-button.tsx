@@ -1,6 +1,7 @@
 import { AppLinearGradient } from "@/src/components/common/app-linear-gradient";
 import { gradientColor } from "@/src/constants/colors";
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
 import { Pressable, PressableProps, Text, View } from "react-native";
 import { twMerge } from "tailwind-merge";
 
@@ -11,7 +12,7 @@ interface GradientButtonProps extends PressableProps {
 
 const variants = {
   fit: "w-auto",
-  full: "w-full",
+  full: "flex-1",
 } as const;
 
 export function GradientButton({
@@ -31,8 +32,8 @@ export function GradientButton({
     >
       <AppLinearGradient colors={[gradientColor.start, gradientColor.end]}>
         <View className="px-8 py-4">
-          <Text className="font-sans font-semibold text-center">
-            Go Shopping
+          <Text className="font-base font-sans font-semibold text-center">
+            {title}
           </Text>
         </View>
       </AppLinearGradient>

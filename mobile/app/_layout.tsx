@@ -13,7 +13,7 @@ import "react-native-reanimated";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/src/libs/react-query";
 import Toast from "react-native-toast-message";
-import { SafeAreaView } from "react-native";
+import { Providers } from "@/src/components/common/providers";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -48,20 +48,24 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
-const headerNoShowRoutes = ["menu-modal"];
+const headerNoShowRoutes = ["menu-modal", "(tabs)"];
+const headerNoShowBackRoutes = ["index"];
 
 function RootLayoutNav() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <Providers>
       <Stack
         screenOptions={{
           header: ({ route }) =>
             !headerNoShowRoutes.includes(route.name) && (
-              <Header hasBackButton />
+              <Header
+                hasBackButton={!headerNoShowBackRoutes.includes(route.name)}
+              />
             ),
         }}
       >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(tabs)" />
 
         <Stack.Screen
           name="menu-modal"
@@ -70,7 +74,6 @@ function RootLayoutNav() {
           }}
         />
       </Stack>
-      <Toast />
-    </QueryClientProvider>
+    </Providers>
   );
 }

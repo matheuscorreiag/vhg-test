@@ -5,6 +5,7 @@ import { ProductColorPicker } from "@/src/components/common/product-color-picker
 import { ProductCounter } from "@/src/components/common/product-counter";
 import { ReviewStars } from "@/src/components/common/review-stars";
 import { useProduct } from "@/src/hooks/products/useProduct";
+import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
@@ -13,7 +14,10 @@ import { ScrollView, Text, View } from "react-native";
 export default function ProductScreen() {
   const { productId } = useLocalSearchParams();
   const { product } = useProduct({ productId: productId as string });
-  const [counter, setCounter] = useState(0);
+  const { addToCart, products } = useCartStore();
+  const [counter, setCounter] = useState(
+    products.find((item) => item.id === productId)?.quantity || 0
+  );
 
   function onAdd() {
     setCounter(counter + 1);
@@ -56,6 +60,7 @@ export default function ProductScreen() {
             title="Adicionar ao carrinho"
             className="flex-1"
             disabled={counter === 0}
+            onPress={() => addToCart({ id: product.id, quantity: counter })}
           />
         </View>
       </ScrollView>

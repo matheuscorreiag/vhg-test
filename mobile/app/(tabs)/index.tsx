@@ -3,12 +3,19 @@ import { PageHeader } from "@/src/components/common/page-header";
 import { ProductCard } from "@/src/components/common/product-card";
 import { FilterIcon } from "@/src/components/icons/filter";
 import { useProducts } from "@/src/hooks/products/useProducts";
+import { useUser } from "@/src/hooks/user/useUser";
 import { useRouter } from "expo-router";
+import { useEffect } from "react";
 import { ScrollView, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
   const { products } = useProducts();
+  const { token } = useUser();
+
+  useEffect(() => {
+    if (token) router.push("/(tabs)");
+  }, [router, token]);
 
   return (
     <PageContainer>

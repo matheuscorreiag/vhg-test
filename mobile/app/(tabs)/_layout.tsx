@@ -33,7 +33,9 @@ export default function TabLayout() {
         name="cart"
         options={{
           tabBarLabel: () => <TabBarLabel label="Carrinho" />,
-          tabBarIcon: ({ focused }) => <CartIcon isFocused={focused} />,
+          tabBarIcon: ({ focused }) => (
+            <CartIcon showCount isFocused={focused} />
+          ),
           headerShown: false,
         }}
         listeners={({ navigation }) => ({

@@ -10,6 +10,11 @@ module.exports = {
       colors: {
         cardBorder: "#EDEDED",
         starColor: "#FFCD48",
+        gradientStart: "#28CE9C",
+        gradientEnd: "#6AC9FF",
+      },
+      borderRadius: {
+        "4xl": "36px",
       },
     },
   },

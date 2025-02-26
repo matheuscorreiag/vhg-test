@@ -48,6 +48,7 @@ export function Button({
   textWeight = "bold",
   padding = "default",
   className,
+  disabled,
   ...props
 }: ButtonProps) {
   const colorClass = variants.color[color];
@@ -70,7 +71,11 @@ export function Button({
   if (color === "gradient") {
     return (
       <Pressable
-        className={twMerge("rounded-4xl overflow-hidden", className)}
+        className={twMerge(
+          "rounded-4xl overflow-hidden",
+          disabled && "opacity-50",
+          className
+        )}
         {...props}
       >
         <AppLinearGradient colors={[gradientColor.start, gradientColor.end]}>
@@ -83,7 +88,12 @@ export function Button({
   // Caso contrário, renderiza com cor sólida
   return (
     <Pressable
-      className={twMerge("rounded-4xl overflow-hidden", colorClass, className)}
+      className={twMerge(
+        "rounded-4xl overflow-hidden",
+        disabled && "opacity-50",
+        colorClass,
+        className
+      )}
       {...props}
     >
       {buttonContent}

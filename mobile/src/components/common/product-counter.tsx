@@ -4,20 +4,19 @@ import { useState } from "react";
 import { Pressable, Text, View, ViewProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
-interface ProductCounterProps extends ViewProps {}
+interface ProductCounterProps extends ViewProps {
+  counter: number;
+  onAdd: () => void;
+  onMinus: () => void;
+}
 
-export function ProductCounter({ className, ...props }: ProductCounterProps) {
-  const [counter, setCounter] = useState(0);
-
-  function onAdd() {
-    setCounter(counter + 1);
-  }
-
-  function onMinus() {
-    if (counter === 0) return;
-    setCounter(counter - 1);
-  }
-
+export function ProductCounter({
+  onAdd,
+  onMinus,
+  counter,
+  className,
+  ...props
+}: ProductCounterProps) {
   return (
     <View className={twMerge("flex-row gap-x-2.5", className)} {...props}>
       <Pressable onPress={onMinus}>

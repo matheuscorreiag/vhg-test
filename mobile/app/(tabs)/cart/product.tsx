@@ -5,9 +5,21 @@ import { ProductColorPicker } from "@/src/components/common/product-color-picker
 import { ProductCounter } from "@/src/components/common/product-counter";
 import { ReviewStars } from "@/src/components/common/review-stars";
 import { Image } from "expo-image";
+import { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
 export default function ProductScreen() {
+  const [counter, setCounter] = useState(0);
+
+  function onAdd() {
+    setCounter(counter + 1);
+  }
+
+  function onMinus() {
+    if (counter === 0) return;
+    setCounter(counter - 1);
+  }
+
   return (
     <PageContainer>
       <ScrollView>
@@ -33,8 +45,12 @@ export default function ProductScreen() {
         </View>
 
         <View className="mt-8 flex-row justify-between items-center gap-x-16">
-          <ProductCounter />
-          <Button title="Adicionar ao carrinho" className="flex-1" />
+          <ProductCounter counter={counter} onAdd={onAdd} onMinus={onMinus} />
+          <Button
+            title="Adicionar ao carrinho"
+            className="flex-1"
+            disabled={counter === 0}
+          />
         </View>
       </ScrollView>
     </PageContainer>

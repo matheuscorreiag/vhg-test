@@ -12,6 +12,8 @@ import "../global.css";
 import "react-native-reanimated";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/src/libs/react-query";
+import Toast from "react-native-toast-message";
+import { SafeAreaView } from "react-native";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -60,7 +62,7 @@ function RootLayoutNav() {
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="product/index" />
+
         <Stack.Screen
           name="menu-modal"
           options={{
@@ -68,6 +70,7 @@ function RootLayoutNav() {
           }}
         />
       </Stack>
+      <Toast />
     </QueryClientProvider>
   );
 }

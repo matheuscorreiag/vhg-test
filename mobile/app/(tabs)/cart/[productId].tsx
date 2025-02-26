@@ -4,11 +4,15 @@ import { PageHeader } from "@/src/components/common/page-header";
 import { ProductColorPicker } from "@/src/components/common/product-color-picker";
 import { ProductCounter } from "@/src/components/common/product-counter";
 import { ReviewStars } from "@/src/components/common/review-stars";
+import { useProduct } from "@/src/hooks/products/useProduct";
 import { Image } from "expo-image";
+import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
 export default function ProductScreen() {
+  const { productId } = useLocalSearchParams();
+  const { product } = useProduct({ productId: productId as string });
   const [counter, setCounter] = useState(0);
 
   function onAdd() {
@@ -20,11 +24,13 @@ export default function ProductScreen() {
     setCounter(counter - 1);
   }
 
+  if (!product) return null;
+
   return (
     <PageContainer>
       <ScrollView>
-        <PageHeader title="Swag Labs Backpack" className="flex-col">
-          <ReviewStars rating={4} />
+        <PageHeader title={product.name} className="flex-col">
+          <ReviewStars rating={product?.rating} />
         </PageHeader>
 
         <View className="w-full rounded-lg overflow-hidden mt-4">
@@ -35,13 +41,13 @@ export default function ProductScreen() {
         </View>
 
         <View className="mt-5">
-          <ProductColorPicker
-            colors={["#28CE9C", "#6AC9FF", "#FFCD48", "#EDEDED"]}
-          />
+          <ProductColorPicker colors={product.colors} />
         </View>
 
         <View className="mt-6">
-          <Text className="text-3xl font-semibold font-sans">R$29.99</Text>
+          <Text className="text-3xl font-semibold font-sans">
+            R${product.price}
+          </Text>
         </View>
 
         <View className="mt-8 flex-row justify-between items-center gap-x-16">

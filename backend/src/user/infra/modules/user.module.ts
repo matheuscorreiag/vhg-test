@@ -5,8 +5,8 @@ import { PrismaUserRepository } from '@user/infra/db/prisma/repositories/prisma-
 import { CreateUserUseCase } from '@user/application/use-cases/create-user.use-case';
 import { FindUserByEmailUseCase } from '@user/application/use-cases/find-user-by-email.use-case';
 import { JwtModule } from '@nestjs/jwt';
-import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from '@user/infra/guards/auth.guard';
+// import { APP_GUARD } from '@nestjs/core';
+// import { AuthGuard } from '@user/infra/guards/auth.guard';
 import { LoginUserController } from '@user/infra/controllers/login-user.controller';
 import { Compare } from '@user/application/protocols/security/compare.security';
 import { BcryptCompare } from '@user/infra/protocols/security/bcrypt/bcrypt.compare';
@@ -23,10 +23,10 @@ import { BcryptEncrypter } from '@user/infra/protocols/security/bcrypt/bcrypt.en
   ],
   controllers: [CreateUserController, LoginUserController],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: AuthGuard,
+    // },
     {
       provide: UserRepository.TOKEN,
       useClass: PrismaUserRepository,

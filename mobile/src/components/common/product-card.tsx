@@ -3,32 +3,24 @@ import { Pressable, PressableProps, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "expo-router";
+import { Product } from "@/src/data/product";
 
-interface ProductCardProps extends PressableProps {
+interface ProductCardProps extends PressableProps, Product {
   id: string;
-  title: string;
-  price: number;
-  rating: number;
-  imageUrl: string;
 }
 
 export function ProductCard({
-  title,
+  name,
+  description,
+  id,
   price,
   rating,
   imageUrl,
   className,
   ...props
 }: ProductCardProps) {
-  const router = useRouter();
-
-  const onPress = () => {
-    router.push("/cart/product");
-  };
-
   return (
     <Pressable
-      onPress={onPress}
       className={twMerge(
         "rounded-lg border-2 border-cardBorder self-baseline",
         className
@@ -47,7 +39,7 @@ export function ProductCard({
           className="text-base font-semibold font-sans h-12"
           numberOfLines={2}
         >
-          {title}
+          {name}
         </Text>
         <Text className="font-bold font-sans text-xl">R${price}</Text>
 

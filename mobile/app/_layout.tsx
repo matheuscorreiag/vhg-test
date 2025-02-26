@@ -60,10 +60,6 @@ function RootLayoutNav() {
         name="menu-modal"
         options={{
           presentation: "containedTransparentModal",
-          gestureDirection: "horizontal",
-          animation: "simple_push",
-          animationMatchesGesture: true,
-          animationDuration: 300,
         }}
       />
     </Stack>

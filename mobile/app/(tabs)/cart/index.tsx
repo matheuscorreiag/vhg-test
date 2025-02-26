@@ -1,4 +1,4 @@
-import { GradientButton } from "@/src/components/common/gradient-button";
+import { Button } from "@/src/components/common/button";
 import { PageContainer } from "@/src/components/common/page-container";
 import { CartIcon } from "@/src/components/icons/cart";
 import { useRouter } from "expo-router";
@@ -19,9 +19,9 @@ export default function CartScreen() {
         sua compra.
       </Text>
 
-      <GradientButton
+      <Button
         title="Go Shopping"
-        variant="fit"
+        color="gradient"
         onPress={() => router.push("/")}
       />
     </PageContainer>

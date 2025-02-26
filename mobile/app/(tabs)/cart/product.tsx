@@ -1,4 +1,4 @@
-import { GradientButton } from "@/src/components/common/gradient-button";
+import { Button } from "@/src/components/common/button";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { ProductColorPicker } from "@/src/components/common/product-color-picker";
@@ -34,7 +34,7 @@ export default function ProductScreen() {
 
         <View className="mt-8 flex-row justify-between items-center gap-x-16">
           <ProductCounter />
-          <GradientButton title="Adicionar ao carrinho" className="flex-1" />
+          <Button title="Adicionar ao carrinho" className="flex-1" />
         </View>
       </ScrollView>
     </PageContainer>

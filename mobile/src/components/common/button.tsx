@@ -85,7 +85,6 @@ export function Button({
     );
   }
 
-  // Caso contrário, renderiza com cor sólida
   return (
     <Pressable
       className={twMerge(

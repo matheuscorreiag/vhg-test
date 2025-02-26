@@ -44,11 +44,28 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const headerNoShowRoutes = ["menu-modal"];
+
 function RootLayoutNav() {
   return (
-    <Stack screenOptions={{ header: () => <Header hasBackButton /> }}>
+    <Stack
+      screenOptions={{
+        header: ({ route }) =>
+          !headerNoShowRoutes.includes(route.name) && <Header hasBackButton />,
+      }}
+    >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="product/index" />
+      <Stack.Screen
+        name="menu-modal"
+        options={{
+          presentation: "containedTransparentModal",
+          gestureDirection: "horizontal",
+          animation: "simple_push",
+          animationMatchesGesture: true,
+          animationDuration: 300,
+        }}
+      />
     </Stack>
   );
 }

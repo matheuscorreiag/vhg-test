@@ -4,10 +4,9 @@ import { SafeAreaView, Text, View } from "react-native";
 
 interface HeaderProps {
   hasBackButton?: boolean;
-  goBackRoute?: Href;
 }
 
-export function Header({ hasBackButton = false, goBackRoute }: HeaderProps) {
+export function Header({ hasBackButton = false }: HeaderProps) {
   const router = useRouter();
   return (
     <SafeAreaView>

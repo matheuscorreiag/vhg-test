@@ -49,6 +49,12 @@ export default function TabLayout() {
           tabBarLabel: () => <TabBarLabel label="Menu" />,
           tabBarIcon: ({ focused }) => <MenuIcon isFocused={focused} />,
         }}
+        listeners={({}) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            router.push("/menu-modal");
+          },
+        })}
       />
     </Tabs>
   );

@@ -19,6 +19,7 @@ export class CompleteOrderDto {
   @IsString()
   addressLine1: string;
 
+  @IsOptional()
   @IsString()
   addressLine2: string;
 

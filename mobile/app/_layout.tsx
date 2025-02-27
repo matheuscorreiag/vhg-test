@@ -10,9 +10,6 @@ import {
 } from "@expo-google-fonts/noto-sans";
 import "../global.css";
 import "react-native-reanimated";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "@/src/libs/react-query";
-import Toast from "react-native-toast-message";
 import { Providers } from "@/src/components/common/providers";
 
 export { ErrorBoundary } from "expo-router";

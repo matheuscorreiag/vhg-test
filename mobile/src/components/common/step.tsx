@@ -1,5 +1,4 @@
-import { StepTitle } from "@/src/components/common/stepper/step-title";
-import { ScrollView, View, ViewProps } from "react-native";
+import { ScrollView, Text, View, ViewProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 interface StepperProps extends ViewProps {
@@ -18,9 +17,11 @@ export function Step({
 }: StepperProps) {
   return (
     <View className={twMerge(className)} {...props}>
-      <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
-        <StepTitle title={title} description={description} />
-
+      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+        <View className="flex-col gap-y-4 mb-4">
+          <Text className="text-lg font-semibold">{title}</Text>
+          {description && <Text className="text-base mb-4">{description}</Text>}
+        </View>
         {children}
       </ScrollView>
     </View>

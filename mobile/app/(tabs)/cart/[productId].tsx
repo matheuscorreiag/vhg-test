@@ -43,7 +43,7 @@ export default function ProductScreen() {
 
   return (
     <PageContainer>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
         <PageHeader title={product.name} className="flex-col">
           <ReviewStars rating={product?.rating} />
         </PageHeader>

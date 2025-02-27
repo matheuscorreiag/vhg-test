@@ -30,7 +30,7 @@ export default function MenuModal() {
     >
       <SafeAreaView className="flex-1 bg-white w-5/6">
         <PageContainer>
-          <ScrollView>
+          <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
             {menus.map((item, index) => (
               <View
                 key={index}

@@ -25,6 +25,7 @@ export class OrderMapper {
           productId: product.productId,
           quantity: product.quantity,
           color: product.color,
+          price: product.price,
         }),
       );
     });

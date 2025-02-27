@@ -6,6 +6,7 @@ export class OrderProduct {
   productId: string;
   quantity: number;
   color: string;
+  price: number;
 
   constructor(props?: OrderProduct) {
     Object.assign(this, props);

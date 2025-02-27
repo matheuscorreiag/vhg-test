@@ -34,6 +34,7 @@ export class mockUpsertProductToOrderUseCase
       quantity: body.quantity,
       color: body.color,
       name: dbProducts.name,
+      price: dbProducts.price,
     });
 
     return this.orderRepository.saveProductOnCurrentOrder(

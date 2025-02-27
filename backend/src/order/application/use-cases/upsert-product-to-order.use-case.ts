@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { UpsertProductToOrderDto } from '@order/application/dto/upsert-product-to-order.dto';
 import { Order } from '@order/domain/entities/order';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
+import { OrderProduct } from '@order/domain/value-objects/order-product';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 
 @Injectable()
@@ -60,11 +61,16 @@ export class UpsertProductToOrderUseCase {
       return currentOrder;
     }
 
+    const orderProduct = new OrderProduct({
+      productId: dbProduct.id,
+      quantity: body.quantity,
+      color: body.color,
+      name: dbProduct.name,
+    });
+
     return await this.orderRepository.saveProductOnCurrentOrder(
       currentOrder.id,
-      dbProduct.id,
-      body.quantity,
-      body.color,
+      orderProduct,
     );
   }
 }

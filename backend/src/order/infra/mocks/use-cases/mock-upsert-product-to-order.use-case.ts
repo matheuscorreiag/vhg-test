@@ -4,6 +4,7 @@ import { OrderRepository } from '@order/domain/repositories/order.repository';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
 import { UpsertProductToOrderDto } from '@order/application/dto/upsert-product-to-order.dto';
 import { UpsertProductToOrderUseCase } from '@order/application/use-cases/upsert-product-to-order.use-case';
+import { OrderProduct } from '@order/domain/value-objects/order-product';
 
 export class mockUpsertProductToOrderUseCase
   implements UpsertProductToOrderUseCase
@@ -28,11 +29,16 @@ export class mockUpsertProductToOrderUseCase
       throw new Error('Order not found');
     }
 
+    const orderProduct = new OrderProduct({
+      productId: dbProducts.id,
+      quantity: body.quantity,
+      color: body.color,
+      name: dbProducts.name,
+    });
+
     return this.orderRepository.saveProductOnCurrentOrder(
       currentOrder.id,
-      dbProducts.id,
-      body.quantity,
-      body.color,
+      orderProduct,
     );
   }
 }

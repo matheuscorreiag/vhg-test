@@ -1,3 +1,4 @@
+import { OrderProduct } from '@order/domain/value-objects/order-product';
 import { Order, OrderState } from '../entities/order';
 
 export abstract class OrderRepository {
@@ -8,9 +9,7 @@ export abstract class OrderRepository {
   abstract save(order: Order, userId: string): Promise<Order>;
   abstract saveProductOnCurrentOrder(
     orderId: string,
-    productId: string,
-    quantity: number,
-    color: string,
+    orderProduct: OrderProduct,
   ): Promise<Order>;
   abstract findCurrentOrderOrCreate(
     userId?: string,

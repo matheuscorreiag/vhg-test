@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { OrderMapper } from '@order/application/mappers/order.mapper';
 import { Order } from '@order/domain/entities/order';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
+import { OrderProduct } from '@order/domain/value-objects/order-product';
 import { OrderState } from '@prisma/client';
 
 @Injectable()
@@ -50,6 +51,7 @@ export class PrismaOrderRepository implements OrderRepository {
             productId: product.productId,
             quantity: product.quantity,
             color: product.color,
+            name: product.name,
           })),
         },
       },
@@ -74,18 +76,17 @@ export class PrismaOrderRepository implements OrderRepository {
 
   async saveProductOnCurrentOrder(
     orderId: string,
-    productId: string,
-    quantity: number,
-    color: string,
+    orderProduct: OrderProduct,
   ): Promise<Order> {
     const updatedOrder = await this.prisma.order.update({
       where: { id: orderId },
       data: {
         products: {
           create: {
-            productId,
-            quantity,
-            color,
+            productId: orderProduct.productId,
+            quantity: orderProduct.quantity,
+            color: orderProduct.color,
+            name: orderProduct.name,
           },
         },
       },

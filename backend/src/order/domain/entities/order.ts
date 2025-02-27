@@ -11,6 +11,7 @@ export class Order {
   userId: string;
   products: OrderProduct[];
   total: number;
+  productCount: number;
   state?: OrderState;
 
   constructor(props?: Partial<Order>) {
@@ -25,7 +26,14 @@ export class Order {
     this.products.push(product);
   }
 
-  calculateTotal(product: OrderProduct[]): void {
-    this.total = product.reduce((acc, product) => acc + product.price, 0);
+  calculateTotal(): void {
+    this.total = this.products.reduce((acc, product) => acc + product.price, 0);
+  }
+
+  calculateProductCount(): void {
+    this.productCount = this.products.reduce(
+      (acc, product) => acc + product.quantity,
+      0,
+    );
   }
 }

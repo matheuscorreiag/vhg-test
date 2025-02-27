@@ -13,10 +13,10 @@ import { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
 export default function ProductScreen() {
+  const { updateCart } = useUpdateCart();
   const { productId } = useLocalSearchParams();
   const { product } = useProduct({ productId: productId as string });
   const { products } = useCartStore();
-  const { updateCart } = useUpdateCart();
   const [counter, setCounter] = useState(
     products.find((item) => item.productId === productId)?.quantity || 0
   );

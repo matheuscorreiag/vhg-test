@@ -6,19 +6,25 @@ interface CartProduct {
   quantity: number;
 }
 
-interface CartState {
+interface State {
   count: number;
   products: CartProduct[];
   address: CompleteOrderAddress | null;
+}
+interface Actions {
   addToCart: (item: CartProduct) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   setAddress: (address: CompleteOrderAddress) => void;
+  clearCart: () => void;
 }
 
-export const useCartStore = create<CartState>((set, get) => ({
+const initialState: State = {
   count: 0,
   products: [],
   address: null,
+};
+export const useCartStore = create<State & Actions>((set, get) => ({
+  ...initialState,
   addToCart: (item) => {
     if (
       get().products.some(
@@ -52,5 +58,8 @@ export const useCartStore = create<CartState>((set, get) => ({
   },
   setAddress: (address) => {
     set({ address });
+  },
+  clearCart: () => {
+    set({ ...initialState });
   },
 }));

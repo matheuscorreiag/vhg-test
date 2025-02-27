@@ -17,7 +17,16 @@ export default function CartLayout() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="product" />
+      <Stack.Screen name="[productId]" />
+      <Stack.Screen name="checkout" />
+      <Stack.Screen name="card" />
+      <Stack.Screen name="address" />
+      <Stack.Screen
+        name="complete"
+        options={{
+          header: () => <Header hasBackButton={false} />,
+        }}
+      />
     </Stack>
   );
 }

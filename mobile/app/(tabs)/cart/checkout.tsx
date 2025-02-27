@@ -62,7 +62,7 @@ export default function CheckoutScreen() {
         <Button
           title="Fazer pedido"
           className="my-8"
-          onPress={() => router.push("/cart/finish-steps")}
+          onPress={() => router.push("/cart/address")}
         />
       </ScrollView>
     </PageContainer>

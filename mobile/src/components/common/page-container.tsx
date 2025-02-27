@@ -1,4 +1,4 @@
-import { SafeAreaView, View, ViewProps } from "react-native";
+import { SafeAreaView, ScrollView, View, ViewProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 interface PageContainerProps extends ViewProps {
@@ -19,12 +19,12 @@ export function PageContainer({
     );
   return (
     <SafeAreaView className="flex-1 h-full w-full">
-      <View
+      <ScrollView
         className={twMerge("px-4 mt-7 flex-1 h-full w-full", className)}
         {...props}
       >
         {children}
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

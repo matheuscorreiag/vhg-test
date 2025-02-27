@@ -29,7 +29,7 @@ export interface CompleteOrderAddress {
 export interface CompleteOrderCard {
   cardName: string;
   cardNumber: string;
-  expiration: Date;
+  expiration: string;
   securityCode: string;
 }
 

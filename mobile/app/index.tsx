@@ -3,7 +3,7 @@ import { Input } from "@/src/components/common/input";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { useLogin } from "@/src/hooks/user/useLogin";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Text, View } from "react-native";
 
 interface LoginForm {
@@ -12,7 +12,11 @@ interface LoginForm {
 }
 
 export default function LoginScreen() {
-  const { handleSubmit, control } = useForm<LoginForm>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<LoginForm>({
     mode: "onSubmit",
   });
   const { loginUser } = useLogin();
@@ -32,30 +36,23 @@ export default function LoginScreen() {
       </Text>
 
       <View className="flex-1 mt-12">
-        <View className="gap-y-6">
-          <Controller
-            render={({ field: { onChange } }) => (
-              <Input
-                autoCorrect={false}
-                autoCapitalize="none"
-                onChangeText={onChange}
-                placeholder="Email"
-              />
-            )}
+        <View className="flex-1 flex-col">
+          <Input
             name="email"
+            placeholder="Email"
             control={control}
+            error={!!errors.email}
+            autoCapitalize="none"
+            autoCorrect={false}
+            required
           />
-          <Controller
-            render={({ field: { onChange } }) => (
-              <Input
-                autoCorrect={false}
-                autoCapitalize="none"
-                onChangeText={onChange}
-                placeholder="Senha"
-              />
-            )}
+
+          <Input
             name="password"
+            placeholder="Password"
             control={control}
+            error={!!errors.password}
+            required
           />
         </View>
 

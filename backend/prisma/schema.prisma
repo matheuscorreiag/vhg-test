@@ -80,12 +80,12 @@ model User {
 }
 
 model Address {
-    id           String @id @default(uuid())
+    id           String  @id @default(uuid())
     name         String
     addressLine1 String
     addressLine2 String
     city         String
-    state        String
+    state        String?
     zipCode      String
     country      String
 

@@ -1,4 +1,4 @@
-import { IsISO8601, IsString } from 'class-validator';
+import { IsISO8601, IsOptional, IsString } from 'class-validator';
 
 export class CompleteOrderDto {
   @IsString()
@@ -25,6 +25,7 @@ export class CompleteOrderDto {
   @IsString()
   city: string;
 
+  @IsOptional()
   @IsString()
   region: string;
 

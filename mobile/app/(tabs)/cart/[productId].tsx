@@ -4,6 +4,7 @@ import { PageHeader } from "@/src/components/common/page-header";
 import { ProductColorPicker } from "@/src/components/common/product-color-picker";
 import { ProductCounter } from "@/src/components/common/product-counter";
 import { ReviewStars } from "@/src/components/common/review-stars";
+import { useAddCart } from "@/src/hooks/cart/useAddCart";
 import { useProduct } from "@/src/hooks/products/useProduct";
 import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
@@ -14,7 +15,8 @@ import { ScrollView, Text, View } from "react-native";
 export default function ProductScreen() {
   const { productId } = useLocalSearchParams();
   const { product } = useProduct({ productId: productId as string });
-  const { addToCart, products } = useCartStore();
+  const { products } = useCartStore();
+  const { addToCart } = useAddCart();
   const [counter, setCounter] = useState(
     products.find((item) => item.id === productId)?.quantity || 0
   );
@@ -60,7 +62,13 @@ export default function ProductScreen() {
             title="Adicionar ao carrinho"
             className="flex-1"
             disabled={counter === 0}
-            onPress={() => addToCart({ id: product.id, quantity: counter })}
+            onPress={() =>
+              addToCart({
+                productId: product.id,
+                quantity: counter,
+                color: product.colors[0], //Foi setado a primeira cor, já que no design não foi especificado
+              })
+            }
           />
         </View>
       </ScrollView>

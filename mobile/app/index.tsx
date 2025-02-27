@@ -2,9 +2,11 @@ import { Button } from "@/src/components/common/button";
 import { Input } from "@/src/components/common/input";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
+import { useCart } from "@/src/hooks/cart/useCart";
 import { useLogin } from "@/src/hooks/user/useLogin";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Controller, Form, useForm } from "react-hook-form";
+import { useCartStore } from "@/src/store/cart";
+import { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { Text, View } from "react-native";
 
 interface LoginForm {
@@ -13,20 +15,28 @@ interface LoginForm {
 }
 
 export default function LoginScreen() {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<LoginForm>({
+  const { handleSubmit, control } = useForm<LoginForm>({
     mode: "onSubmit",
   });
-
   const { loginUser } = useLogin();
+  const { addToCart } = useCartStore();
+  const { cart } = useCart();
 
   async function onSubmit(data: LoginForm) {
-    console.log(data);
     await loginUser(data);
   }
+
+  useEffect(() => {
+    if (cart?.products && cart?.products?.length > 0) {
+      cart.products.forEach((item) =>
+        addToCart({
+          id: item.productId,
+          quantity: item.quantity,
+        })
+      );
+    }
+  }, [cart, addToCart]);
+
   return (
     <PageContainer>
       <PageHeader title="Login" className="flex-col" />

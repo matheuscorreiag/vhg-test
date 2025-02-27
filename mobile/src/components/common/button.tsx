@@ -1,9 +1,14 @@
 import { AppLinearGradient } from "@/src/components/common/app-linear-gradient";
 import { gradientColor } from "@/src/constants/colors";
-import { Pressable, PressableProps, Text, View } from "react-native";
+import {
+  TouchableOpacity,
+  TouchableOpacityProps,
+  Text,
+  View,
+} from "react-native";
 import { twMerge } from "tailwind-merge";
 
-interface ButtonProps extends PressableProps {
+interface ButtonProps extends TouchableOpacityProps {
   title: string;
   color?: keyof typeof variants.color;
   textAlign?: keyof typeof variants.text.alignment;
@@ -70,7 +75,7 @@ export function Button({
 
   if (color === "gradient") {
     return (
-      <Pressable
+      <TouchableOpacity
         className={twMerge(
           "rounded-4xl overflow-hidden",
           disabled && "opacity-50",
@@ -81,12 +86,12 @@ export function Button({
         <AppLinearGradient colors={[gradientColor.start, gradientColor.end]}>
           {buttonContent}
         </AppLinearGradient>
-      </Pressable>
+      </TouchableOpacity>
     );
   }
 
   return (
-    <Pressable
+    <TouchableOpacity
       className={twMerge(
         "rounded-4xl overflow-hidden",
         disabled && "opacity-50",
@@ -96,6 +101,6 @@ export function Button({
       {...props}
     >
       {buttonContent}
-    </Pressable>
+    </TouchableOpacity>
   );
 }

@@ -1,14 +1,14 @@
 import { ProductColorPicker } from "@/src/components/common/product-color-picker";
 import { ProductCounter } from "@/src/components/common/product-counter";
 import { ReviewStars } from "@/src/components/common/review-stars";
-import { CartProduct } from "@/src/data/cart";
+import { OrderProduct } from "@/src/data/order";
 import { useDeleteFromCart } from "@/src/hooks/cart/useDeleteFromCart";
 import { useUpdateCart } from "@/src/hooks/cart/useUpdateCart";
 import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
 import { Text, TouchableOpacity, View } from "react-native";
 
-export function CartListProduct({ productId, name, color, id }: CartProduct) {
+export function CartListProduct({ productId, name, color }: OrderProduct) {
   const { products } = useCartStore();
   const { updateCart } = useUpdateCart();
   const { deleteFromCart } = useDeleteFromCart();

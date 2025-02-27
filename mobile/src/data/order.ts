@@ -1,14 +1,15 @@
-export interface CartProduct {
+export interface OrderProduct {
   id: string;
   color: string;
   productId: string;
   name: string;
   quantity: number;
+  price: number;
 }
 
-export interface Cart {
+export interface Order {
   id: string;
   userId: string;
-  products: CartProduct[];
+  products: OrderProduct[];
   state: "CART" | "COMPLETED";
 }

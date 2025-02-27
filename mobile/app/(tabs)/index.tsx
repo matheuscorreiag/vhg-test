@@ -2,7 +2,7 @@ import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { ProductCard } from "@/src/components/common/product-card";
 import { FilterIcon } from "@/src/components/icons/filter";
-import { useCart } from "@/src/hooks/cart/useCart";
+import { useOrder } from "@/src/hooks/cart/useOrder";
 import { useProducts } from "@/src/hooks/products/useProducts";
 import { useUser } from "@/src/hooks/user/useUser";
 import { useCartStore } from "@/src/store/cart";
@@ -14,7 +14,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const { products } = useProducts();
   const { token } = useUser();
-  const { cart } = useCart();
+  const { order } = useOrder();
   const cartStore = useCartStore();
 
   useEffect(() => {
@@ -22,10 +22,10 @@ export default function HomeScreen() {
   }, [router, token]);
 
   useEffect(() => {
-    if (cart?.products && cart?.products?.length > 0) {
-      cart.products.forEach((product) => cartStore.addToCart(product));
+    if (order?.products && order?.products?.length > 0) {
+      order.products.forEach((product) => cartStore.addToCart(product));
     }
-  }, [cart]);
+  }, [order]);
 
   return (
     <PageContainer>

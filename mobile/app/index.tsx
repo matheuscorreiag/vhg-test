@@ -2,10 +2,7 @@ import { Button } from "@/src/components/common/button";
 import { Input } from "@/src/components/common/input";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
-import { useCart } from "@/src/hooks/cart/useCart";
 import { useLogin } from "@/src/hooks/user/useLogin";
-import { useCartStore } from "@/src/store/cart";
-import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Text, View } from "react-native";
 

@@ -18,7 +18,6 @@ export function useCompleteCart() {
     mutationKey: ["complete-cart"],
     mutationFn: (body: CompleteOrder) => completeCartFn(body),
     onSuccess: () => {
-      Toast.show({ type: "success", text1: "Pedido concluído com sucesso" });
       router.push("/cart/complete");
       cartStore.clearCart();
     },

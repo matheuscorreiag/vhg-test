@@ -1,7 +1,6 @@
 import { Order, OrderState } from '@order/domain/entities/order';
-import { Request } from 'express';
 
-export const defaultOrder = new Order({
+export const mockOrder = new Order({
   id: '123',
   products: [
     {
@@ -14,7 +13,3 @@ export const defaultOrder = new Order({
   userId: '123',
   state: OrderState.CART,
 });
-
-export const mockRequest: Partial<Request> = {
-  userPayload: { id: '123', email: 'test@test.com' },
-};

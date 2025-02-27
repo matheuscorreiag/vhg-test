@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { UpsertProductToOrderDto } from '@order/application/dto/upsert-product-to-order.dto';
-import { OrderProductMapper } from '@order/application/mappers/order-product.mapper';
 import { Order } from '@order/domain/entities/order';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
 import { ProductRepository } from '@product/domain/repositories/product.repository';
@@ -20,7 +19,7 @@ export class UpsertProductToOrderUseCase {
   ): Promise<Order | void> {
     const dbProduct = await this.productRepository.findById(body.productId);
 
-    if (!dbProduct) {
+    if (!dbProduct || !dbProduct.id) {
       throw new Error('Product not found');
     }
 
@@ -51,7 +50,9 @@ export class UpsertProductToOrderUseCase {
 
       await this.orderRepository.updateProductOnCurrentOrder(
         currentOrder.id,
-        updatedOrderProduct,
+        dbProduct.id,
+        updatedOrderProduct.quantity,
+        updatedOrderProduct.color,
       );
 
       currentOrder.products[productAlreadyOnOrder] = updatedOrderProduct;
@@ -59,11 +60,11 @@ export class UpsertProductToOrderUseCase {
       return currentOrder;
     }
 
-    const orderProduct = OrderProductMapper.toDomain(body);
-
     return await this.orderRepository.saveProductOnCurrentOrder(
       currentOrder.id,
-      orderProduct,
+      dbProduct.id,
+      body.quantity,
+      body.color,
     );
   }
 }

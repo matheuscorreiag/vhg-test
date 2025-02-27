@@ -1,5 +1,6 @@
 import { UpsertProductToOrderController } from '@order/infra/controllers/upsert-product-to-order.controller';
 import { mockRequest } from '@order/infra/mocks';
+import { mockOrder } from '@order/infra/mocks/entities/mock-order';
 import { mockOrderRepository } from '@order/infra/mocks/repositories/mock-order.repository';
 import { mockUpsertProductToOrderUseCase } from '@order/infra/mocks/use-cases/mock-upsert-product-to-order.use-case';
 import { mockProductRepository } from '@product/infra/mocks/repositories/mock-product.repository';
@@ -15,6 +16,8 @@ describe('UpsertProductController', () => {
   const controller = new UpsertProductToOrderController(useCase);
 
   it('should return correct data', async () => {
+    jest.spyOn(useCase, 'execute').mockResolvedValue(mockOrder);
+
     const result = await controller.upsertProductToOrder(
       {
         color: 'red',
@@ -28,9 +31,7 @@ describe('UpsertProductController', () => {
   });
 
   it('should return error if the use case return an error', async () => {
-    jest.spyOn(repository, 'save').mockRejectedValue(() => {
-      throw new Error('Error');
-    });
+    jest.spyOn(useCase, 'execute').mockRejectedValue(new Error('Error'));
 
     expect(
       controller.upsertProductToOrder(

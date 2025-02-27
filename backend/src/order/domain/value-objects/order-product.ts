@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 
 export class OrderProduct {
   id?: string;
+  name: string;
   productId: string;
   quantity: number;
   color: string;

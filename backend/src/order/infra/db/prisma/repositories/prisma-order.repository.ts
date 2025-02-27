@@ -1,9 +1,7 @@
 import { PrismaService } from '@libs/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { OrderProductMapper } from '@order/application/mappers/order-product.mapper';
 import { OrderMapper } from '@order/application/mappers/order.mapper';
 import { Order } from '@order/domain/entities/order';
-import { OrderProduct } from '@order/domain/entities/order-product';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
 import { OrderState } from '@prisma/client';
 
@@ -68,7 +66,7 @@ export class PrismaOrderRepository implements OrderRepository {
     });
 
     if (!order) {
-      return await this.save(new Order({ userId, products: [] }), userId);
+      return await this.save(new Order(), userId);
     }
 
     return OrderMapper.prismaToDomain(order);
@@ -76,16 +74,18 @@ export class PrismaOrderRepository implements OrderRepository {
 
   async saveProductOnCurrentOrder(
     orderId: string,
-    product: OrderProduct,
+    productId: string,
+    quantity: number,
+    color: string,
   ): Promise<Order> {
     const updatedOrder = await this.prisma.order.update({
       where: { id: orderId },
       data: {
         products: {
           create: {
-            productId: product.productId,
-            quantity: product.quantity,
-            color: product.color,
+            productId,
+            quantity,
+            color,
           },
         },
       },
@@ -97,20 +97,31 @@ export class PrismaOrderRepository implements OrderRepository {
 
   async updateProductOnCurrentOrder(
     orderId: string,
-    product: OrderProduct,
-  ): Promise<OrderProduct> {
-    const updatedOrder = await this.prisma.orderProduct.update({
+    productId: string,
+    quantity: number,
+    color: string,
+  ): Promise<Order> {
+    await this.prisma.orderProduct.updateMany({
       where: {
-        id: product.id,
+        productId,
         orderId,
       },
       data: {
-        color: product.color,
-        quantity: product.quantity,
+        color,
+        quantity,
       },
     });
 
-    return OrderProductMapper.prismaToDomain([updatedOrder])[0];
+    const order = await this.prisma.order.findFirst({
+      where: { id: orderId },
+      include: { products: true },
+    });
+
+    if (!order) {
+      throw new Error('Order not found');
+    }
+
+    return OrderMapper.prismaToDomain(order);
   }
 
   async deleteOrderProduct(orderProductId: string): Promise<void> {

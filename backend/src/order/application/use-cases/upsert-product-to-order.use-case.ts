@@ -36,6 +36,23 @@ export class UpsertProductToOrderUseCase {
     );
 
     if (productAlreadyOnOrder !== -1) {
+      console.log('Quantity is 0', body);
+      if (body.quantity === 0) {
+        const product = currentOrder.products[productAlreadyOnOrder];
+
+        console.log('Product', product);
+
+        if (!product.id) {
+          throw new Error('Product not found');
+        }
+
+        currentOrder.products = currentOrder.products.filter(
+          (product) => product.productId !== body.productId,
+        );
+
+        return await this.orderRepository.deleteOrderProduct(product.id);
+      }
+
       currentOrder.products = currentOrder.products.map((product) => {
         if (product.productId === body.productId) {
           return {

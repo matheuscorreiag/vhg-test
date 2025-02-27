@@ -2,7 +2,7 @@ import { Button } from "@/src/components/common/button";
 import { Label } from "@/src/components/common/label";
 import { CartIcon } from "@/src/components/icons/cart";
 import { useRouter } from "expo-router";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 export function EmptyCart() {
   const router = useRouter();

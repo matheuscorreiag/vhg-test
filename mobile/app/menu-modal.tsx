@@ -4,7 +4,7 @@ import { PageContainer } from "@/src/components/common/page-container";
 import { menus } from "@/src/constants/menu";
 import { useLogout } from "@/src/hooks/user/useLogout";
 import { Href, useRouter } from "expo-router";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { twMerge } from "tailwind-merge";
 

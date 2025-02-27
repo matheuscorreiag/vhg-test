@@ -58,7 +58,7 @@ export function Button({
     <View className={twMerge(variants.padding[padding])}>
       <Label
         className={twMerge(
-          "font-semibold text-center text-black",
+          " font-semibold text-center text-black",
           variants.text.alignment[textAlign],
           variants.text.size[textSize],
           variants.text.weight[textWeight]

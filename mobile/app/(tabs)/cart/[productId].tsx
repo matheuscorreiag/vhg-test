@@ -11,7 +11,7 @@ import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 export default function ProductScreen() {
   const { updateCart } = useUpdateCart();
@@ -51,8 +51,15 @@ export default function ProductScreen() {
 
         <View className="w-full rounded-lg overflow-hidden mt-4">
           <Image
+            placeholderContentFit="cover"
+            contentFit="cover"
             placeholder={require("../../../assets/images/default-product-image.png")}
-            style={{ width: 358, height: 358, objectFit: "cover" }}
+            source={{ uri: product.imageUrl }}
+            style={{
+              width: 358,
+              height: 358,
+              borderRadius: 8,
+            }}
           />
         </View>
 

@@ -53,7 +53,8 @@ export default function LoginScreen() {
             placeholder="Password"
             control={control}
             error={!!errors.password}
-            secureTextEntry
+            secure
+            Entry
             required
           />
         </View>

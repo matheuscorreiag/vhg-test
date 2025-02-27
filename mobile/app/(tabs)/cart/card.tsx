@@ -6,13 +6,12 @@ import { PageHeader } from "@/src/components/common/page-header";
 import { Step } from "@/src/components/common/step";
 import { CardIcon } from "@/src/components/icons/card";
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useCompleteCart } from "@/src/hooks/cart/useCompleteCart";
 import { CompleteOrderCard } from "@/src/data/order";
 import { useForm } from "react-hook-form";
 import { useCartStore } from "@/src/store/cart";
 import Toast from "react-native-toast-message";
-import { useRouter } from "expo-router";
 import { Label } from "@/src/components/common/label";
 
 export default function CardScreen() {

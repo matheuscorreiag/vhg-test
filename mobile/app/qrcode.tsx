@@ -4,7 +4,7 @@ import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useEffect } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 export default function QRCodeScreen() {
   const [permission, requestPermission] = useCameraPermissions();

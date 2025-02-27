@@ -6,7 +6,7 @@ import { Step } from "@/src/components/common/step";
 import { CompleteOrderAddress } from "@/src/data/order";
 import { useCartStore } from "@/src/store/cart";
 import { useRouter } from "expo-router";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { View } from "react-native";
 
 export default function AddressScreen() {

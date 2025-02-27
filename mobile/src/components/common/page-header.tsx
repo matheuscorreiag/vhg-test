@@ -1,6 +1,6 @@
 import { Label } from "@/src/components/common/label";
 import { ReactNode } from "react";
-import { Text, View, ViewProps } from "react-native";
+import { View, ViewProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 interface PageHeaderProps extends ViewProps {

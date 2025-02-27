@@ -1,7 +1,7 @@
 import { Label } from "@/src/components/common/label";
 import { CounterAddIcon } from "@/src/components/icons/counter-add";
 import { CounterMinusIcon } from "@/src/components/icons/counter-minus";
-import { Pressable, Text, View, ViewProps } from "react-native";
+import { Pressable, View, ViewProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 interface ProductCounterProps extends ViewProps {

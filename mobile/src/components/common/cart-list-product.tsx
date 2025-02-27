@@ -7,7 +7,7 @@ import { useDeleteFromCart } from "@/src/hooks/cart/useDeleteFromCart";
 import { useUpdateCart } from "@/src/hooks/cart/useUpdateCart";
 import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
-import { Text, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 interface CartListProductProps extends OrderProduct {
   hideControls?: boolean;
@@ -50,6 +50,7 @@ export function CartListProduct({
         <Image
           placeholder={require("../../../assets/images/default-product-image.png")}
           placeholderContentFit="cover"
+          source={{ uri: imageUrl }}
           style={{
             width: 160,
             height: 240,

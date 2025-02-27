@@ -6,7 +6,7 @@ import { PageHeader } from "@/src/components/common/page-header";
 import { Total } from "@/src/components/common/total";
 import { useOrder } from "@/src/hooks/cart/useOrder";
 import { useRouter } from "expo-router";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 // Labels feitas para ser usada somente local
 function CheckoutLabel({ label }: { label: string }) {

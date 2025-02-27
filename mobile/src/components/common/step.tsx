@@ -1,5 +1,5 @@
 import { Label } from "@/src/components/common/label";
-import { ScrollView, Text, View, ViewProps } from "react-native";
+import { View, ViewProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 interface StepperProps extends ViewProps {

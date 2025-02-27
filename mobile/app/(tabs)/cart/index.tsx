@@ -6,7 +6,7 @@ import { PageHeader } from "@/src/components/common/page-header";
 import { Total } from "@/src/components/common/total";
 import { useOrder } from "@/src/hooks/cart/useOrder";
 import { useRouter } from "expo-router";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 export default function CartScreen() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function CartScreen() {
   if (!order) return null;
 
   return (
-    <PageContainer className="flex-1">
+    <PageContainer safeArea={false} className="flex-1 p-4">
       {order?.products?.length === 0 && <EmptyCart />}
       {order && order?.products?.length > 0 && (
         <>

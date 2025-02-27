@@ -2,7 +2,7 @@ import { Label } from "@/src/components/common/label";
 import { gradientColor } from "@/src/constants/colors";
 import { useCartStore } from "@/src/store/cart";
 import * as React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import Svg, {
   SvgProps,
   G,

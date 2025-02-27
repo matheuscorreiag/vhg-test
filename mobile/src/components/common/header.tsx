@@ -1,7 +1,7 @@
 import { BackButtonIcon } from "@/assets/back-button";
 import { Label } from "@/src/components/common/label";
-import { Href, useRouter } from "expo-router";
-import { SafeAreaView, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { SafeAreaView, View } from "react-native";
 
 interface HeaderProps {
   hasBackButton?: boolean;

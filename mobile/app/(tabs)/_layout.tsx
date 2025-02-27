@@ -2,7 +2,6 @@ import React from "react";
 import { Tabs, useRouter } from "expo-router";
 import { Header } from "@/src/components/common/header";
 import { CartIcon } from "@/src/components/icons/cart";
-import { Text } from "react-native";
 import { HomeIcon } from "@/src/components/icons/home";
 import { MenuIcon } from "@/src/components/icons/menu";
 import { Label } from "@/src/components/common/label";

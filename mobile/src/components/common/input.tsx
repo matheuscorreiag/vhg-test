@@ -1,7 +1,7 @@
 import { Label } from "@/src/components/common/label";
 import { forwardRef } from "react";
 import { Control, Controller } from "react-hook-form";
-import { Text, TextInput, TextInputProps, View } from "react-native";
+import { TextInput, TextInputProps, View } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 interface InputProps<T> extends TextInputProps {

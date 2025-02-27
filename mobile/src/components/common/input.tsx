@@ -1,3 +1,4 @@
+import { Label } from "@/src/components/common/label";
 import { forwardRef } from "react";
 import { Control, Controller } from "react-hook-form";
 import { Text, TextInput, TextInputProps, View } from "react-native";
@@ -37,15 +38,15 @@ export const Input = forwardRef<TextInput, InputProps<Control<any>>>(
         render={({ field: { onChange } }) => (
           <View className="gap-x-4 flex-col flex-1">
             {label && (
-              <Text className="text-base font-semibold">
+              <Label className="  font-semibold">
                 {label}
                 {required && " *"}
-              </Text>
+              </Label>
             )}
             <TextInput
               ref={ref}
               className={twMerge(
-                "font-sans border-b-2 border-b-gray-300 p-2.5 text-black",
+                "border-b-2 border-b-gray-300 p-2.5 text-black",
                 className,
                 error && "border-red-400"
               )}

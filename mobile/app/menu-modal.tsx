@@ -1,4 +1,5 @@
 import { Button } from "@/src/components/common/button";
+import { Label } from "@/src/components/common/label";
 import { PageContainer } from "@/src/components/common/page-container";
 import { menus } from "@/src/constants/menu";
 import { useLogout } from "@/src/hooks/user/useLogout";
@@ -51,9 +52,7 @@ export default function MenuModal() {
                     onPress={() => onPressMenuOption(item.route as Href)}
                   />
                 )}
-                {!item.route && (
-                  <Text className="font-sans text-sm">{item.title}</Text>
-                )}
+                {!item.route && <Label className="text-sm">{item.title}</Label>}
               </View>
             ))}
           </ScrollView>

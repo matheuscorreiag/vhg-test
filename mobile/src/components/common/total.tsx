@@ -1,3 +1,4 @@
+import { Label } from "@/src/components/common/label";
 import { Text, View } from "react-native";
 
 interface TotalProps {
@@ -9,15 +10,15 @@ export function Total({ total, quantity }: TotalProps) {
   const isPlural = quantity > 1;
   return (
     <View className="flex-row items-center justify-between">
-      <Text className="font-sans font-semibold text-base items-center">
+      <Label className="font-semibold items-center">
         Total:{" "}
-        <Text>
+        <Label>
           {quantity}
           {isPlural ? " itens" : " item"}
-        </Text>
-      </Text>
+        </Label>
+      </Label>
 
-      <Text className="text-xl font-bold font-sans">R$ {total}</Text>
+      <Label className="text-xl font-bold">R$ {total}</Label>
     </View>
   );
 }

@@ -1,3 +1,4 @@
+import { Label } from "@/src/components/common/label";
 import { ReactNode } from "react";
 import { Text, View, ViewProps } from "react-native";
 import { twMerge } from "tailwind-merge";
@@ -14,7 +15,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <View className={twMerge(className)} {...props}>
-      <Text className="text-2xl font-bold font-sans mb-6">{title}</Text>
+      <Label className="text-2xl font-bold mb-6">{title}</Label>
       {children}
     </View>
   );

@@ -5,13 +5,14 @@ import { CartIcon } from "@/src/components/icons/cart";
 import { Text } from "react-native";
 import { HomeIcon } from "@/src/components/icons/home";
 import { MenuIcon } from "@/src/components/icons/menu";
+import { Label } from "@/src/components/common/label";
 
 type TabBarIconProps = {
   label: string;
 };
 
 function TabBarLabel({ label }: TabBarIconProps) {
-  return <Text className="text-sm font-sans">{label}</Text>;
+  return <Label className="text-sm">{label}</Label>;
 }
 export default function TabLayout() {
   const router = useRouter();

@@ -1,5 +1,5 @@
-import { Text } from "react-native";
+import { Label } from "@/src/components/common/label";
 
 export default function NotFoundScreen() {
-  return <Text>This screen doesn't exist.</Text>;
+  return <Label>This screen doesn't exist.</Label>;
 }

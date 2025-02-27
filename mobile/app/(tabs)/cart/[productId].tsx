@@ -1,4 +1,5 @@
 import { Button } from "@/src/components/common/button";
+import { Label } from "@/src/components/common/label";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { ProductColorPicker } from "@/src/components/common/product-color-picker";
@@ -60,9 +61,7 @@ export default function ProductScreen() {
         </View>
 
         <View className="mt-6">
-          <Text className="text-3xl font-semibold font-sans">
-            R${product.price}
-          </Text>
+          <Label className="text-3xl font-semibold">R${product.price}</Label>
         </View>
 
         <View className="mt-8 flex-row justify-between items-center gap-x-16">

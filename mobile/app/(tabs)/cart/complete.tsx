@@ -1,22 +1,20 @@
 import { Button } from "@/src/components/common/button";
-import { PageContainer } from "@/src/components/common/page-container";
+import { Label } from "@/src/components/common/label";
 import { CompleteIcon } from "@/src/components/icons/complete";
 import { useRouter } from "expo-router";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 export default function CompleteScreen() {
   const router = useRouter();
   return (
     <View className="flex-1 items-center justify-center p-4">
       <CompleteIcon />
-      <Text className="font-bold text-2xl font-sans mt-12">
-        Checkout completado
-      </Text>
+      <Label className="font-bold text-2xl   mt-12">Checkout completado</Label>
 
-      <Text className="text-center font-sans text-base mt-4">
+      <Label className="text-center     mt-4">
         Obrigado pelo seu pedido. Seu pedido foi despachado e chegará tão rápido
         quanto o pônei galopa!
-      </Text>
+      </Label>
 
       <Button
         title="Continue comprando"

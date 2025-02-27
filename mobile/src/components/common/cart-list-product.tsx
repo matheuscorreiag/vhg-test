@@ -1,3 +1,4 @@
+import { Label } from "@/src/components/common/label";
 import { ProductColorPicker } from "@/src/components/common/product-color-picker";
 import { ProductCounter } from "@/src/components/common/product-counter";
 import { ReviewStars } from "@/src/components/common/review-stars";
@@ -57,17 +58,17 @@ export function CartListProduct({
           }}
         />
         <View className="ml-4">
-          <Text className="text-base font-semibold font-sans">{name}</Text>
+          <Label className="font-semibold">{name}</Label>
 
           <View className="mt-2">
             <ReviewStars rating={4} />
           </View>
 
-          <Text className="text-sm font-sans mt-5">
+          <Label className="text-sm mt-5">
             <ProductColorPicker colors={[color]} />
-          </Text>
+          </Label>
 
-          <Text className="font-sans mt-3 font-bold text-xl">R$ {price}</Text>
+          <Label className="mt-3 font-bold text-xl">R$ {price}</Label>
 
           {!hideControls && (
             <View className="flex-row gap-x-6 mt-6">
@@ -77,7 +78,7 @@ export function CartListProduct({
                 onMinus={() => onPressIcons("minus")}
               />
               <TouchableOpacity onPress={handleRemove}>
-                <Text className="text-red-600 font-sans">Remover</Text>
+                <Label className="text-red-600  ">Remover</Label>
               </TouchableOpacity>
             </View>
           )}

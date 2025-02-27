@@ -1,4 +1,5 @@
 import { Button } from "@/src/components/common/button";
+import { Label } from "@/src/components/common/label";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { CameraView, useCameraPermissions } from "expo-camera";
@@ -16,10 +17,10 @@ export default function QRCodeScreen() {
     <PageContainer>
       <PageHeader title="QR Code Scanner" className="flex-col" />
 
-      <Text>
+      <Label>
         Digitalize um código QR que contenha um URL. Ele será aberto no
         navegador padrão.
-      </Text>
+      </Label>
 
       <View className="h-[400px] mt-4 rounded-lg">
         {permission?.granted && <CameraView style={{ flex: 1 }} />}

@@ -1,10 +1,11 @@
 import { Button } from "@/src/components/common/button";
 import { Input } from "@/src/components/common/input";
+import { Label } from "@/src/components/common/label";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { useLogin } from "@/src/hooks/user/useLogin";
 import { useForm } from "react-hook-form";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 interface LoginForm {
   email: string;
@@ -29,11 +30,11 @@ export default function LoginScreen() {
     <PageContainer>
       <PageHeader title="Login" className="flex-col" />
 
-      <Text className="text-base font-sans">
+      <Label>
         Selecione um nome de usuário e uma senha na lista abaixo ou clique no
         nome de usuário para preencher automaticamente o nome de usuário e a
         senha.
-      </Text>
+      </Label>
 
       <View className="flex-1 mt-12">
         <View className="flex-1 flex-col gap-y-3">
@@ -64,19 +65,13 @@ export default function LoginScreen() {
         />
 
         <View className="rounded-lg bg-gray-200 mt-12 p-4">
-          <View>
-            <Text className="text-bold text-base font-sans">
-              Nomes de usuários aceitos
-            </Text>
-            <Text className="text-sm font-sans">example@example.com</Text>
-          </View>
+          <Label className="text-bold">Nomes de usuários aceitos</Label>
+          <Label className="text-sm">example@example.com</Label>
 
-          <View className="mt-6">
-            <Text className="text-bold text-base font-sans">
-              Senha para todos os usuários listados acima
-            </Text>
-            <Text className="text-sm font-sans">123456</Text>
-          </View>
+          <Label className="text-bold mt-6">
+            Senha para todos os usuários listados acima
+          </Label>
+          <Label className="text-sm ">123456</Label>
         </View>
       </View>
     </PageContainer>

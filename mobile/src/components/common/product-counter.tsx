@@ -1,3 +1,4 @@
+import { Label } from "@/src/components/common/label";
 import { CounterAddIcon } from "@/src/components/icons/counter-add";
 import { CounterMinusIcon } from "@/src/components/icons/counter-minus";
 import { Pressable, Text, View, ViewProps } from "react-native";
@@ -21,7 +22,7 @@ export function ProductCounter({
       <Pressable onPress={onMinus}>
         <CounterMinusIcon />
       </Pressable>
-      <Text className="font-sans font-semibold">{counter}</Text>
+      <Label className="font-semibold">{counter}</Label>
       <Pressable onPress={onAdd}>
         <CounterAddIcon />
       </Pressable>

@@ -1,11 +1,7 @@
 import { AppLinearGradient } from "@/src/components/common/app-linear-gradient";
+import { Label } from "@/src/components/common/label";
 import { gradientColor } from "@/src/constants/colors";
-import {
-  TouchableOpacity,
-  TouchableOpacityProps,
-  Text,
-  View,
-} from "react-native";
+import { TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 interface ButtonProps extends TouchableOpacityProps {
@@ -35,7 +31,7 @@ const variants = {
     },
     size: {
       small: "text-sm",
-      medium: "text-base",
+      medium: " ",
       large: "text-xl",
     },
     weight: {
@@ -60,16 +56,16 @@ export function Button({
 
   const buttonContent = (
     <View className={twMerge(variants.padding[padding])}>
-      <Text
+      <Label
         className={twMerge(
-          "font-base font-sans font-semibold text-center text-black",
+          "font-semibold text-center text-black",
           variants.text.alignment[textAlign],
           variants.text.size[textSize],
           variants.text.weight[textWeight]
         )}
       >
         {title}
-      </Text>
+      </Label>
     </View>
   );
 

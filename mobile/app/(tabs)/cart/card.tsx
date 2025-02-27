@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { useCartStore } from "@/src/store/cart";
 import Toast from "react-native-toast-message";
 import { useRouter } from "expo-router";
+import { Label } from "@/src/components/common/label";
 
 export default function CardScreen() {
   const [isChecked, setChecked] = useState(false);
@@ -72,7 +73,7 @@ export default function CardScreen() {
         submitLabel="Continuar"
       >
         <View className="flex-row justify-between">
-          <Text className="font-semibold text-lg mb-5">Card</Text>
+          <Label className="font-semibold text-lg mb-5">Card</Label>
           <CardIcon />
         </View>
         <View className="flex-col gap-y-6">
@@ -120,9 +121,9 @@ export default function CardScreen() {
             onValueChange={setChecked}
             color="#007CC2"
           />
-          <Text className="">
+          <Label>
             Meu endereço de cobrança é igual ao meu endereço de entrega
-          </Text>
+          </Label>
         </View>
 
         <Button

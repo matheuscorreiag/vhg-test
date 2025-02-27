@@ -1,5 +1,6 @@
 import { Button } from "@/src/components/common/button";
 import { CartListProduct } from "@/src/components/common/cart-list-product";
+import { Label } from "@/src/components/common/label";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { Total } from "@/src/components/common/total";
@@ -9,14 +10,14 @@ import { ScrollView, Text, View } from "react-native";
 
 // Labels feitas para ser usada somente local
 function CheckoutLabel({ label }: { label: string }) {
-  return <Text className="text-lg font-bold font-sans mt-6">{label}</Text>;
+  return <Label className="text-lg font-bold mt-6">{label}</Label>;
 }
 
 function CheckoutAddressLabel({ label }: { label: string }) {
   return (
-    <Text className="font-sans text-base w-[180px] truncate" numberOfLines={1}>
+    <Label className="w-[180px] truncate" numberOfLines={1}>
       {label}
-    </Text>
+    </Label>
   );
 }
 

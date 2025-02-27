@@ -1,3 +1,4 @@
+import { Label } from "@/src/components/common/label";
 import { gradientColor } from "@/src/constants/colors";
 import { useCartStore } from "@/src/store/cart";
 import * as React from "react";
@@ -27,7 +28,7 @@ export const CartIcon = ({
     <Svg width={24} height={24} {...props}>
       {count > 0 && showCount && (
         <View className="absolute bg-red-600 rounded-full w-4 h-4 -right-1">
-          <Text className="text-center text-white text-xs">{count}</Text>
+          <Label className="text-center text-white text-xs">{count}</Label>
         </View>
       )}
       <Defs>

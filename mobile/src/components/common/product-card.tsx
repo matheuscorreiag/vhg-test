@@ -4,6 +4,7 @@ import { Image } from "expo-image";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "expo-router";
 import { Product } from "@/src/data/product";
+import { Label } from "@/src/components/common/label";
 
 interface ProductCardProps extends PressableProps, Product {
   id: string;
@@ -35,13 +36,10 @@ export function ProductCard({
         placeholderContentFit="cover"
       />
       <View className="p-4 gap-y-2.5">
-        <Text
-          className="text-base font-semibold font-sans h-12"
-          numberOfLines={2}
-        >
+        <Label className="font-semibold h-12" numberOfLines={2}>
           {name}
-        </Text>
-        <Text className="font-bold font-sans text-xl">R${price}</Text>
+        </Label>
+        <Label className="font-bold text-xl">R${price}</Label>
 
         <ReviewStars rating={rating} />
       </View>

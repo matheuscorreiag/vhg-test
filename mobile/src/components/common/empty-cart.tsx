@@ -1,4 +1,5 @@
 import { Button } from "@/src/components/common/button";
+import { Label } from "@/src/components/common/label";
 import { CartIcon } from "@/src/components/icons/cart";
 import { useRouter } from "expo-router";
 import { Text, View } from "react-native";
@@ -10,12 +11,12 @@ export function EmptyCart() {
       <View className="mb-12">
         <CartIcon />
       </View>
-      <Text className="font-sans text-2xl font-bold mb-4">Nenhum item</Text>
+      <Label className="text-2xl font-bold mb-4">Nenhum item</Label>
 
-      <Text className="text-base font-sans text-center mb-4">
+      <Label className="text-center mb-4">
         Oh não! Seu carrinho está vazio. Preencha-o com brindes para concluir
         sua compra.
-      </Text>
+      </Label>
 
       <Button
         title="Go Shopping"

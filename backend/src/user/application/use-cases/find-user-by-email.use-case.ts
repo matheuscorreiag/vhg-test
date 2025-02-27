@@ -22,7 +22,7 @@ export class FindUserByEmailUseCase {
     );
 
     if (!isPasswordMatch) throw new Error('Password does not match');
-
+    delete user.password;
     return user;
   }
 }

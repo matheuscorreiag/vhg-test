@@ -16,6 +16,8 @@ export class FindCurrentOrderUseCase {
       throw new Error('Order not found');
     }
 
+    order.calculateTotal(order.products);
+
     return order;
   }
 }

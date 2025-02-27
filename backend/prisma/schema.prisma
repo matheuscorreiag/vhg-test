@@ -14,7 +14,7 @@ model Product {
     id          String   @id @default(uuid())
     name        String
     description String
-    price       Int
+    price       Float
     rating      Int      @default(0)
     imageUrl    String
     colors      String[]

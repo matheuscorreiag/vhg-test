@@ -8,7 +8,16 @@ import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
 import { Text, TouchableOpacity, View } from "react-native";
 
-export function CartListProduct({ productId, name, color }: OrderProduct) {
+interface CartListProductProps extends OrderProduct {
+  hideControls?: boolean;
+}
+export function CartListProduct({
+  productId,
+  name,
+  color,
+  price,
+  hideControls,
+}: CartListProductProps) {
   const { products } = useCartStore();
   const { updateCart } = useUpdateCart();
   const { deleteFromCart } = useDeleteFromCart();
@@ -40,7 +49,12 @@ export function CartListProduct({ productId, name, color }: OrderProduct) {
         <Image
           placeholder={require("../../../assets/images/default-product-image.png")}
           placeholderContentFit="cover"
-          style={{ width: 160, height: 240, objectFit: "cover" }}
+          style={{
+            width: 160,
+            height: 240,
+            objectFit: "cover",
+            borderRadius: 8,
+          }}
         />
         <View className="ml-4">
           <Text className="text-base font-semibold font-sans">{name}</Text>
@@ -53,18 +67,20 @@ export function CartListProduct({ productId, name, color }: OrderProduct) {
             <ProductColorPicker colors={[color]} />
           </Text>
 
-          <Text className="font-sans mt-3 font-bold text-xl">R$29.99</Text>
+          <Text className="font-sans mt-3 font-bold text-xl">R$ {price}</Text>
 
-          <View className="flex-row gap-x-6 mt-6">
-            <ProductCounter
-              counter={productCount || 0}
-              onAdd={() => onPressIcons("add")}
-              onMinus={() => onPressIcons("minus")}
-            />
-            <TouchableOpacity onPress={handleRemove}>
-              <Text className="text-red-600 font-sans">Remover</Text>
-            </TouchableOpacity>
-          </View>
+          {!hideControls && (
+            <View className="flex-row gap-x-6 mt-6">
+              <ProductCounter
+                counter={productCount || 0}
+                onAdd={() => onPressIcons("add")}
+                onMinus={() => onPressIcons("minus")}
+              />
+              <TouchableOpacity onPress={handleRemove}>
+                <Text className="text-red-600 font-sans">Remover</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </View>
     </View>

@@ -75,7 +75,7 @@ export default function LoginScreen() {
 
           <View className="mt-6">
             <Text className="text-bold text-base font-sans">
-              Senha para todos os usuários
+              Senha para todos os usuários listados acima
             </Text>
             <Text className="text-sm font-sans">123456</Text>
           </View>

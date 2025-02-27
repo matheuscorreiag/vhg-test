@@ -11,5 +11,7 @@ export interface Order {
   id: string;
   userId: string;
   products: OrderProduct[];
+  total: number;
+  productCount: number;
   state: "CART" | "COMPLETED";
 }

@@ -3,14 +3,16 @@ import { CartListProduct } from "@/src/components/common/cart-list-product";
 import { EmptyCart } from "@/src/components/common/empty-cart";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
+import { Total } from "@/src/components/common/total";
 import { useOrder } from "@/src/hooks/cart/useOrder";
+import { useRouter } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
 
 export default function CartScreen() {
+  const router = useRouter();
   const { order } = useOrder();
 
-  const isPlural =
-    order && order?.products?.reduce((acc, item) => acc + item.quantity, 0) > 1;
+  if (!order) return null;
 
   return (
     <PageContainer className="flex-1">
@@ -24,27 +26,19 @@ export default function CartScreen() {
                 <CartListProduct key={item.id} {...item} />
               ))}
             </View>
+
+            <View className="mb-8 mt-20">
+              <Total quantity={order?.productCount} total={order?.total} />
+            </View>
+
+            <Button
+              className="mt-4"
+              title="Ir para Checkout"
+              onPress={() => router.push("/cart/checkout")}
+            />
           </ScrollView>
         </>
       )}
-      <View className="flex-row mb-8">
-        <Text className="font-sans font-semibold text-base items-center">
-          Total:{" "}
-          <Text>
-            {order?.products.reduce((acc, item) => acc + item.quantity, 0)}
-            {isPlural ? " itens" : " item"}
-          </Text>
-        </Text>
-
-        <Text>
-          R${" "}
-          {order?.products.reduce(
-            (acc, item) => acc + item.quantity * item.price,
-            0
-          )}
-        </Text>
-      </View>
-      <Button className="mb-4" title="Ir para Checkout" />
     </PageContainer>
   );
 }

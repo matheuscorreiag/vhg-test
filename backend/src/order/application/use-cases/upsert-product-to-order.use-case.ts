@@ -36,11 +36,8 @@ export class UpsertProductToOrderUseCase {
     );
 
     if (productAlreadyOnOrder !== -1) {
-      console.log('Quantity is 0', body);
       if (body.quantity === 0) {
         const product = currentOrder.products[productAlreadyOnOrder];
-
-        console.log('Product', product);
 
         if (!product.id) {
           throw new Error('Product not found');

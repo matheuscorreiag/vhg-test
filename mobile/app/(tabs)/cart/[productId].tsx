@@ -4,7 +4,7 @@ import { PageHeader } from "@/src/components/common/page-header";
 import { ProductColorPicker } from "@/src/components/common/product-color-picker";
 import { ProductCounter } from "@/src/components/common/product-counter";
 import { ReviewStars } from "@/src/components/common/review-stars";
-import { useAddCart } from "@/src/hooks/cart/useAddCart";
+import { useUpdateCart } from "@/src/hooks/cart/useUpdateCart";
 import { useProduct } from "@/src/hooks/products/useProduct";
 import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
@@ -16,7 +16,7 @@ export default function ProductScreen() {
   const { productId } = useLocalSearchParams();
   const { product } = useProduct({ productId: productId as string });
   const { products } = useCartStore();
-  const { addToCart } = useAddCart();
+  const { updateCart } = useUpdateCart();
   const [counter, setCounter] = useState(
     products.find((item) => item.productId === productId)?.quantity || 0
   );
@@ -30,9 +30,9 @@ export default function ProductScreen() {
     setCounter(counter - 1);
   }
 
-  function onPressAddToCart() {
+  function onPressUpdateCart() {
     if (!product || counter === 0) return;
-    addToCart({
+    updateCart({
       productId: product.id,
       quantity: counter,
       color: product.colors[0], //Foi setado a primeira cor, já que no design não foi especificado
@@ -70,7 +70,7 @@ export default function ProductScreen() {
           <Button
             title="Adicionar ao carrinho"
             className="flex-1"
-            onPress={onPressAddToCart}
+            onPress={onPressUpdateCart}
           />
         </View>
       </ScrollView>

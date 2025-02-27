@@ -14,17 +14,16 @@ export default function HomeScreen() {
   const router = useRouter();
   const { products } = useProducts();
   const { token } = useUser();
-  const { addToCart, products: cartproducts } = useCartStore();
   const { cart } = useCart();
+  const cartStore = useCartStore();
 
-  console.log(cartproducts);
   useEffect(() => {
     if (token) router.push("/(tabs)");
   }, [router, token]);
 
   useEffect(() => {
     if (cart?.products && cart?.products?.length > 0) {
-      cart.products.forEach((product) => addToCart(product));
+      cart.products.forEach((product) => cartStore.addToCart(product));
     }
   }, [cart]);
 

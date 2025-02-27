@@ -7,9 +7,36 @@ import { Step } from "@/src/components/common/step";
 import { CardIcon } from "@/src/components/icons/card";
 import { useState } from "react";
 import { Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { useCompleteCart } from "@/src/hooks/cart/useCompleteCart";
+import { CompleteOrderAddress, CompleteOrderCard } from "@/src/data/order";
+import { useForm } from "react-hook-form";
+import { useCartStore } from "@/src/store/cart";
 
 export default function CardScreen() {
   const [isChecked, setChecked] = useState(false);
+  const cartStore = useCartStore();
+
+  const { completeCart } = useCompleteCart();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CompleteOrderAddress>({
+    mode: "onSubmit",
+  });
+
+  const onSubmit = (data: CompleteOrderCard) => {
+    const addressInfo = cartStore.address;
+
+    if (!addressInfo) return;
+
+    completeCart({
+      ...addressInfo,
+      ...data,
+    });
+    // completeCart({});
+  };
   return (
     <PageContainer>
       <PageHeader title="Checkout" />

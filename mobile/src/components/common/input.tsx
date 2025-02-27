@@ -6,10 +6,11 @@ interface InputProps extends TextInputProps {
   placeholder: string;
   required?: boolean;
   label?: string;
+  error?: boolean;
 }
 
 export const Input = forwardRef<TextInput, InputProps>(
-  ({ placeholder, label, className, required, ...props }, ref) => {
+  ({ placeholder, label, className, error, required, ...props }, ref) => {
     return (
       <View className="gap-x-4 flex-col flex-1">
         {label && (
@@ -22,7 +23,8 @@ export const Input = forwardRef<TextInput, InputProps>(
           ref={ref}
           className={twMerge(
             "font-sans border-b-2 border-b-gray-300 p-2.5",
-            className
+            className,
+            error && "border-red-400"
           )}
           placeholder={placeholder}
           placeholderTextColor="#000"

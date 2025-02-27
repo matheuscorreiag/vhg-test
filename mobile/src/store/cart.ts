@@ -1,3 +1,4 @@
+import { CompleteOrderAddress } from "@/src/data/order";
 import { create } from "zustand";
 
 interface CartProduct {
@@ -8,13 +9,16 @@ interface CartProduct {
 interface CartState {
   count: number;
   products: CartProduct[];
+  address: CompleteOrderAddress | null;
   addToCart: (item: CartProduct) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
+  setAddress: (address: CompleteOrderAddress) => void;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
   count: 0,
   products: [],
+  address: null,
   addToCart: (item) => {
     if (
       get().products.some(
@@ -45,5 +49,8 @@ export const useCartStore = create<CartState>((set, get) => ({
         product.productId === itemId ? { ...product, quantity } : product
       ),
     }));
+  },
+  setAddress: (address) => {
+    set({ address });
   },
 }));

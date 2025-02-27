@@ -9,6 +9,7 @@ export const mockOrder = new Order({
       quantity: 1,
       name: 'product',
       price: 10.99,
+      imageUrl: 'https://image.com',
     },
   ],
   userId: '123',

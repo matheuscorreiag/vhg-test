@@ -21,7 +21,6 @@ export default function AddressScreen() {
   });
 
   function onSubmit(data: CompleteOrderAddress) {
-    console.log(data);
     cartStore.setAddress(data);
 
     router.push("/cart/card");

@@ -81,6 +81,7 @@ export class UpsertProductToOrderUseCase {
       color: body.color,
       name: dbProduct.name,
       price: dbProduct.price,
+      imageUrl: dbProduct.imageUrl,
     });
 
     return await this.orderRepository.saveProductOnCurrentOrder(

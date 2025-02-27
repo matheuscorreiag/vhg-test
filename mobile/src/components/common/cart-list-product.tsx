@@ -18,6 +18,7 @@ export function CartListProduct({
   color,
   price,
   hideControls,
+  imageUrl,
 }: CartListProductProps) {
   const { products } = useCartStore();
   const { updateCart } = useUpdateCart();

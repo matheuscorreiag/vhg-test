@@ -10,7 +10,7 @@ import { useProduct } from "@/src/hooks/products/useProduct";
 import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 
 export default function ProductScreen() {
@@ -18,9 +18,7 @@ export default function ProductScreen() {
   const { productId } = useLocalSearchParams();
   const { product } = useProduct({ productId: productId as string });
   const { products } = useCartStore();
-  const [counter, setCounter] = useState(
-    products.find((item) => item.productId === productId)?.quantity || 0
-  );
+  const [counter, setCounter] = useState(0);
 
   function onAdd() {
     setCounter(counter + 1);
@@ -39,6 +37,13 @@ export default function ProductScreen() {
       color: product.colors[0], //Foi setado a primeira cor, já que no design não foi especificado
     });
   }
+
+  useEffect(() => {
+    const count =
+      products.find((item) => item.productId === productId)?.quantity || 0;
+
+    setCounter(count);
+  }, [productId]);
 
   if (!product) return null;
 

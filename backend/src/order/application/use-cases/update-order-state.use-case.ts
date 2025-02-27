@@ -1,15 +1,16 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { CompleteOrderDto } from '@order/application/dto/complete-order.dto';
 import { OrderState } from '@order/domain/entities/order';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
 
 @Injectable()
-export class UpdateOrderStateUseCase {
+export class CompleteOrderUseCase {
   constructor(
     @Inject(OrderRepository.TOKEN)
     public readonly orderRepository: OrderRepository,
   ) {}
 
-  async execute(userId: string, orderState: OrderState) {
+  async execute(userId: string, body: CompleteOrderDto) {
     const currentOrder =
       await this.orderRepository.findCurrentOrderOrCreate(userId);
 
@@ -17,18 +18,18 @@ export class UpdateOrderStateUseCase {
       throw new Error('Order not found');
     }
 
-    if (currentOrder.state === orderState) {
-      throw new Error('Order already in this state');
+    if (currentOrder.state === OrderState.COMPLETED) {
+      throw new Error('Order already completed');
     }
 
     if (currentOrder.products.length === 0) {
       throw new Error('Order is empty');
     }
 
-    const order = await this.orderRepository.updateOrderState(
+    const order = await this.orderRepository.completeOrder(
       userId,
       currentOrder.id,
-      orderState,
+      body,
     );
 
     if (!order) {

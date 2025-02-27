@@ -1,5 +1,6 @@
 import { OrderProduct } from '@order/domain/value-objects/order-product';
-import { Order, OrderState } from '../entities/order';
+import { Order } from '../entities/order';
+import { CompleteOrderDto } from '@order/application/dto/complete-order.dto';
 
 export abstract class OrderRepository {
   static TOKEN = 'OrderRepositoryToken';
@@ -21,10 +22,10 @@ export abstract class OrderRepository {
     quantity: number,
     color: string,
   ): Promise<Order>;
-  abstract updateOrderState(
+  abstract completeOrder(
     userId: string,
     orderId: string,
-    state: OrderState,
+    body: CompleteOrderDto,
   ): Promise<Order>;
   abstract deleteOrderProduct(orderProductId: string): Promise<void>;
 }

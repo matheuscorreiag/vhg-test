@@ -1,5 +1,6 @@
 import { PrismaService } from '@libs/prisma.service';
 import { Injectable } from '@nestjs/common';
+import { CompleteOrderDto } from '@order/application/dto/complete-order.dto';
 import { OrderMapper } from '@order/application/mappers/order.mapper';
 import { Order } from '@order/domain/entities/order';
 import { OrderRepository } from '@order/domain/repositories/order.repository';
@@ -135,15 +136,36 @@ export class PrismaOrderRepository implements OrderRepository {
     });
   }
 
-  async updateOrderState(
+  async completeOrder(
     userId: string,
     orderId: string,
-    state: OrderState,
+    body: CompleteOrderDto,
   ): Promise<Order> {
+    // Para simplificar, está sendo criado um cartão e endereço para cada pedido
     const updatedOrder = await this.prisma.order.update({
       where: { id: orderId, userId },
       data: {
-        state,
+        paidoutAt: new Date(),
+        state: OrderState.COMPLETED,
+        card: {
+          create: {
+            name: body.cardName,
+            number: body.cardNumber,
+            expiration: body.expiration,
+            securityCode: body.securityCode,
+          },
+        },
+        address: {
+          create: {
+            addressLine1: body.addressLine1,
+            addressLine2: body.addressLine2,
+            city: body.city,
+            state: body.region,
+            zipCode: body.zipCode,
+            country: body.country,
+            name: body.addressName,
+          },
+        },
       },
       include: { products: true },
     });

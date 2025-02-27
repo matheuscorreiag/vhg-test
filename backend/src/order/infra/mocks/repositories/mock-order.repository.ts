@@ -31,7 +31,7 @@ export class mockOrderRepository implements OrderRepository {
     return Promise.resolve();
   }
 
-  updateOrderState(): Promise<Order> {
+  completeOrder(): Promise<Order> {
     return Promise.resolve(new Order());
   }
 }

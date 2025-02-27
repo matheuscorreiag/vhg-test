@@ -1,3 +1,4 @@
+import { Card } from '@order/domain/value-objects/card';
 import { OrderProduct } from '@order/domain/value-objects/order-product';
 import { randomUUID } from 'crypto';
 
@@ -13,6 +14,7 @@ export class Order {
   total: number;
   productCount: number;
   state?: OrderState;
+  card?: Card;
 
   constructor(props?: Partial<Order>) {
     Object.assign(this, props);
@@ -35,5 +37,9 @@ export class Order {
       (acc, product) => acc + product.quantity,
       0,
     );
+  }
+
+  setCard(card: Card): void {
+    this.card = card;
   }
 }

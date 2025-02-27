@@ -36,10 +36,10 @@ export default function LoginScreen() {
       </Text>
 
       <View className="flex-1 mt-12">
-        <View className="flex-1 flex-col">
+        <View className="flex-1 flex-col gap-y-3">
           <Input
             name="email"
-            placeholder="Email"
+            placeholder="E-mail"
             control={control}
             error={!!errors.email}
             autoCapitalize="none"
@@ -52,6 +52,7 @@ export default function LoginScreen() {
             placeholder="Password"
             control={control}
             error={!!errors.password}
+            secureTextEntry
             required
           />
         </View>

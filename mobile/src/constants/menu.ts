@@ -22,7 +22,7 @@ export const menus: MenuItems[] = [
   },
   {
     title: "QR Code Scanner",
-    route: "/",
+    route: "/qrcode",
   },
   {
     title: "Desenho",

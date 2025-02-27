@@ -19,7 +19,6 @@ export default function MenuModal() {
       return logout();
     }
 
-    router.dismissAll();
     router.push(route);
   }
 

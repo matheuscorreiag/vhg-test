@@ -1,4 +1,4 @@
-interface CartProduct {
+export interface CartProduct {
   id: string;
   color: string;
   productId: string;

@@ -6,7 +6,7 @@ import { Text, View } from "react-native";
 export function EmptyCart() {
   const router = useRouter();
   return (
-    <>
+    <View className="flex-1 items-center justify-center">
       <View className="mb-12">
         <CartIcon />
       </View>
@@ -22,6 +22,6 @@ export function EmptyCart() {
         color="gradient"
         onPress={() => router.push("/")}
       />
-    </>
+    </View>
   );
 }

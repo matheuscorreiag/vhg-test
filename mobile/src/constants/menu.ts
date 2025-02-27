@@ -5,7 +5,9 @@ interface MenuItems {
   route?: Href;
 }
 export const menus: MenuItems[] = [
-  { title: "Test Flows" },
+  {
+    title: "Test Flows",
+  },
   {
     title: "Adicionar ao fluxo do carrinho",
     route: "/",
@@ -29,7 +31,7 @@ export const menus: MenuItems[] = [
   { title: "Actions" },
   {
     title: "Log Out",
-    route: "/",
+    route: "/+not-found", // Hack para facilitar o logout
   },
   {
     title: "Reset App State",

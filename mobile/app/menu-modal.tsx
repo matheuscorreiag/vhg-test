@@ -1,6 +1,7 @@
 import { Button } from "@/src/components/common/button";
 import { PageContainer } from "@/src/components/common/page-container";
 import { menus } from "@/src/constants/menu";
+import { useLogout } from "@/src/hooks/user/useLogout";
 import { Href, useRouter } from "expo-router";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,8 +9,16 @@ import { twMerge } from "tailwind-merge";
 
 export default function MenuModal() {
   const router = useRouter();
+  const { logout } = useLogout();
 
   function onPressMenuOption(route: Href) {
+    router.dismissAll();
+
+    if (route === "/+not-found") {
+      router.push("/");
+      return logout();
+    }
+
     router.dismissAll();
     router.push(route);
   }

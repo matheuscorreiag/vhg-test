@@ -1,10 +1,4 @@
-import { PageContainer } from "@/src/components/common/page-container";
-import { Text, View } from "react-native";
-
+// Componente vazio feito para que a barra de menu exiba um ícone de menu
 export default function MenuScreen() {
-  return (
-    <PageContainer>
-      <Text>Tab3</Text>
-    </PageContainer>
-  );
+  return <></>;
 }

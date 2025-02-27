@@ -1,6 +1,5 @@
 import { CounterAddIcon } from "@/src/components/icons/counter-add";
 import { CounterMinusIcon } from "@/src/components/icons/counter-minus";
-import { useState } from "react";
 import { Pressable, Text, View, ViewProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 

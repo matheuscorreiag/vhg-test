@@ -18,7 +18,7 @@ export default function ProductScreen() {
   const { products } = useCartStore();
   const { addToCart } = useAddCart();
   const [counter, setCounter] = useState(
-    products.find((item) => item.id === productId)?.quantity || 0
+    products.find((item) => item.productId === productId)?.quantity || 0
   );
 
   function onAdd() {
@@ -28,6 +28,15 @@ export default function ProductScreen() {
   function onMinus() {
     if (counter === 0) return;
     setCounter(counter - 1);
+  }
+
+  function onPressAddToCart() {
+    if (!product || counter === 0) return;
+    addToCart({
+      productId: product.id,
+      quantity: counter,
+      color: product.colors[0], //Foi setado a primeira cor, já que no design não foi especificado
+    });
   }
 
   if (!product) return null;
@@ -61,14 +70,7 @@ export default function ProductScreen() {
           <Button
             title="Adicionar ao carrinho"
             className="flex-1"
-            disabled={counter === 0}
-            onPress={() =>
-              addToCart({
-                productId: product.id,
-                quantity: counter,
-                color: product.colors[0], //Foi setado a primeira cor, já que no design não foi especificado
-              })
-            }
+            onPress={onPressAddToCart}
           />
         </View>
       </ScrollView>

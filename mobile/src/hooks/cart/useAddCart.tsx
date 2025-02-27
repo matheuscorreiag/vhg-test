@@ -24,7 +24,6 @@ export function useAddCart() {
     mutationKey: ["addToCart"],
     mutationFn: (body: AddCartProps) => addItemToCart(body),
     onSuccess: (_, { productId, quantity }) => {
-      console.log(cartStore.products, productId);
       if (!cartStore.products.some((item) => item.productId === productId)) {
         cartStore.addToCart({
           productId,
@@ -36,7 +35,6 @@ export function useAddCart() {
       router.push("/");
     },
     onError: (error) => {
-      console.log(error);
       Toast.show({ type: "error", text1: "Erro ao adicionar item" });
     },
   });

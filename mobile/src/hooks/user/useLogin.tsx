@@ -27,7 +27,6 @@ export function useLogin() {
       router.push("/(tabs)");
     },
     onError: (error) => {
-      console.log(error);
       Toast.show({ type: "error", text1: "Erro ao logar" });
     },
   });

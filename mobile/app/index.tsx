@@ -19,18 +19,10 @@ export default function LoginScreen() {
     mode: "onSubmit",
   });
   const { loginUser } = useLogin();
-  const { addToCart } = useCartStore();
-  const { cart } = useCart();
 
   async function onSubmit(data: LoginForm) {
     await loginUser(data);
   }
-
-  useEffect(() => {
-    if (cart?.products && cart?.products?.length > 0) {
-      cart.products.forEach((product) => addToCart(product));
-    }
-  }, [cart, addToCart]);
 
   return (
     <PageContainer>

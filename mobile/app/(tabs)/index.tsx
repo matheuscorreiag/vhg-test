@@ -2,21 +2,31 @@ import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { ProductCard } from "@/src/components/common/product-card";
 import { FilterIcon } from "@/src/components/icons/filter";
+import { useCart } from "@/src/hooks/cart/useCart";
 import { useProducts } from "@/src/hooks/products/useProducts";
 import { useUser } from "@/src/hooks/user/useUser";
+import { useCartStore } from "@/src/store/cart";
 import { useRouter } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { ScrollView, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
   const { products } = useProducts();
   const { token } = useUser();
+  const { addToCart, products: cartproducts } = useCartStore();
+  const { cart } = useCart();
 
-  console.log(token);
+  console.log(cartproducts);
   useEffect(() => {
     if (token) router.push("/(tabs)");
   }, [router, token]);
+
+  useEffect(() => {
+    if (cart?.products && cart?.products?.length > 0) {
+      cart.products.forEach((product) => addToCart(product));
+    }
+  }, [cart]);
 
   return (
     <PageContainer>

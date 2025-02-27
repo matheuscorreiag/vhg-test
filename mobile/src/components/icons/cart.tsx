@@ -22,6 +22,7 @@ export const CartIcon = ({
   ...props
 }: CartIconProps) => {
   const { count } = useCartStore();
+
   return (
     <Svg width={24} height={24} {...props}>
       {count > 0 && showCount && (

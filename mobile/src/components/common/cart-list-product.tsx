@@ -1,22 +1,19 @@
 import { ProductColorPicker } from "@/src/components/common/product-color-picker";
 import { ProductCounter } from "@/src/components/common/product-counter";
 import { ReviewStars } from "@/src/components/common/review-stars";
+import { CartProduct } from "@/src/data/cart";
+import { useCartStore } from "@/src/store/cart";
 import { Image } from "expo-image";
 import { Text, TouchableOpacity, View } from "react-native";
-
-interface CartListProductProps {
-  id: string;
-  color: string;
-  productId: string;
-  quantity: number;
-}
 
 export function CartListProduct({
   id,
   productId,
+  name,
   color,
   quantity,
-}: CartListProductProps) {
+}: CartProduct) {
+  const cartStore = useCartStore();
   function onAdd() {}
 
   function onMinus() {}
@@ -30,9 +27,7 @@ export function CartListProduct({
           style={{ width: 160, height: 240, objectFit: "cover" }}
         />
         <View className="ml-4">
-          <Text className="text-base font-semibold font-sans">
-            Swag Labs Backpack
-          </Text>
+          <Text className="text-base font-semibold font-sans">{name}</Text>
 
           <View className="mt-2">
             <ReviewStars rating={4} />

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface CartProduct {
-  id: string;
+  productId: string;
   quantity: number;
 }
 
@@ -9,25 +9,33 @@ interface CartState {
   count: number;
   products: CartProduct[];
   addToCart: (item: CartProduct) => void;
-  removeFromCart: (item: CartProduct) => void;
+  updateQuantity: (itemId: string, quantity: number) => void;
 }
 
-// A lógica feito foi somente adicionar o count + 1 se for um novo item do carrinho
-export const useCartStore = create<CartState>((set) => ({
+export const useCartStore = create<CartState>((set, get) => ({
   count: 0,
   products: [],
   addToCart: (item) => {
+    console.log(item, "novo");
     set((state) => ({
-      count: !state.products.some((product) => product.id === item.id)
-        ? state.count + 1
-        : state.count,
+      count: state.count + 1,
       products: [...state.products, item],
     }));
   },
-  removeFromCart: (item) => {
+  updateQuantity: (itemId, quantity) => {
+    if (quantity === 0) {
+      set((state) => ({
+        products: state.products.filter(
+          (product) => product.productId !== itemId
+        ),
+        count: state.count - 1,
+      }));
+      return;
+    }
     set((state) => ({
-      count: state.products.filter((product) => product.id !== item.id).length,
-      products: state.products.filter((product) => product.id !== item.id),
+      products: state.products.map((product) =>
+        product.productId === itemId ? { ...product, quantity } : product
+      ),
     }));
   },
 }));

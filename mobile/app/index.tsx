@@ -28,12 +28,7 @@ export default function LoginScreen() {
 
   useEffect(() => {
     if (cart?.products && cart?.products?.length > 0) {
-      cart.products.forEach((item) =>
-        addToCart({
-          id: item.productId,
-          quantity: item.quantity,
-        })
-      );
+      cart.products.forEach((product) => addToCart(product));
     }
   }, [cart, addToCart]);
 

@@ -13,6 +13,7 @@ export default function HomeScreen() {
   const { products } = useProducts();
   const { token } = useUser();
 
+  console.log(token);
   useEffect(() => {
     if (token) router.push("/(tabs)");
   }, [router, token]);

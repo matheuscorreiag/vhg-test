@@ -24,13 +24,16 @@ export function useAddCart() {
     mutationKey: ["addToCart"],
     mutationFn: (body: AddCartProps) => addItemToCart(body),
     onSuccess: (_, { productId, quantity }) => {
-      cartStore.addToCart({
-        id: productId,
-        quantity,
-      });
-      // Redireciona para página principal, para melhor fluxo de navegação
+      console.log(cartStore.products, productId);
+      if (!cartStore.products.some((item) => item.productId === productId)) {
+        cartStore.addToCart({
+          productId,
+          quantity,
+        });
+      } else {
+        cartStore.updateQuantity(productId, quantity);
+      }
       router.push("/");
-      Toast.show({ type: "success", text1: "Item adicionado ao carrinho" });
     },
     onError: (error) => {
       console.log(error);

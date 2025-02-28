@@ -29,7 +29,7 @@ export function ProductCard({
     >
       <Image
         style={{ width: 170, height: 170, borderRadius: 8 }}
-        placeholder={require("../../../assets/images/default-product-image.png")}
+        placeholder={require("@/assets/images/default-product-image.png")}
         source={{
           uri: imageUrl,
         }}

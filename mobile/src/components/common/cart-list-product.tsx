@@ -49,7 +49,7 @@ export function CartListProduct({
     <View className="flex-row gap-x-4 items-center">
       <View className="flex-row gap-x-4">
         <Image
-          placeholder={require("../../../assets/images/default-product-image.png")}
+          placeholder={require("@/assets/images/default-product-image.png")}
           placeholderContentFit="cover"
           source={{ uri: imageUrl }}
           style={{

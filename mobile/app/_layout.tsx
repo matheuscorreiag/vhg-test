@@ -41,8 +41,8 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
-const headerNoShowRoutes = ["menu-modal", "(tabs)"];
-const headerNoShowBackRoutes = ["index"];
+const headerNoShowRoutes = ["menu-modal", "(tabs)", "index"];
+const headerNoShowBackRoutes = ["index", "login"];
 
 function RootLayoutNav() {
   return (

@@ -58,7 +58,7 @@ export default function ProductScreen() {
           <Image
             placeholderContentFit="cover"
             contentFit="cover"
-            placeholder={require("../../../assets/images/default-product-image.png")}
+            placeholder={require("@/assets/images/default-product-image.png")}
             source={{ uri: product.imageUrl }}
             style={{
               width: 358,

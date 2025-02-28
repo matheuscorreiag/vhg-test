@@ -1,4 +1,4 @@
-import { BackButtonIcon } from "@/assets/back-button";
+import { BackButtonIcon } from "@/src/components/icons/back-button";
 import { AppName } from "@/src/components/common/app-name";
 import { Href, useRouter } from "expo-router";
 import { SafeAreaView, View } from "react-native";

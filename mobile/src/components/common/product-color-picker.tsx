@@ -3,6 +3,7 @@ import { View } from "react-native";
 
 interface ProductColorPickerProps {
   colors: string[];
+  onPress?: (color: string) => void;
 }
 export function ProductColorPicker({ colors }: ProductColorPickerProps) {
   return (

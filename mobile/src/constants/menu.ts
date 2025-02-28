@@ -10,15 +10,15 @@ export const menus: MenuItems[] = [
   },
   {
     title: "Adicionar ao fluxo do carrinho",
-    route: "/",
+    route: "/(tabs)",
   },
   {
     title: "Checkout Flow",
-    route: "/",
+    route: "/(tabs)",
   },
   {
     title: "Login Flow",
-    route: "/",
+    route: "/(tabs)",
   },
   {
     title: "QR Code Scanner",
@@ -26,7 +26,7 @@ export const menus: MenuItems[] = [
   },
   {
     title: "Desenho",
-    route: "/",
+    route: "/(tabs)",
   },
   { title: "Actions" },
   {
@@ -35,19 +35,19 @@ export const menus: MenuItems[] = [
   },
   {
     title: "Reset App State",
-    route: "/",
+    route: "/(tabs)",
   },
   { title: "About" },
   {
     title: "API Calls",
-    route: "/",
+    route: "/(tabs)",
   },
   {
     title: "Report A Bug",
-    route: "/",
+    route: "/(tabs)",
   },
   {
     title: "About",
-    route: "/",
+    route: "/about",
   },
 ];

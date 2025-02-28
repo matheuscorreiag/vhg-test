@@ -27,8 +27,12 @@ export function CartListProduct({
   const productCount =
     products.find((item) => item.productId === productId)?.quantity || 0;
 
+  async function handleRemove() {
+    return await deleteFromCart({ productId });
+  }
+
   async function onPressIcons(operation: "add" | "minus") {
-    if (!productId || (productCount === 0 && operation === "minus")) return;
+    if (operation === "minus" && productCount === 0) return;
 
     if (productCount === 1 && operation === "minus") {
       return await handleRemove();
@@ -39,10 +43,6 @@ export function CartListProduct({
       quantity: operation === "add" ? productCount + 1 : productCount - 1,
       color,
     });
-  }
-  async function handleRemove() {
-    if (!productId) return;
-    return await deleteFromCart({ productId });
   }
 
   return (
@@ -75,12 +75,12 @@ export function CartListProduct({
           {!hideControls && (
             <View className="flex-row gap-x-6 mt-6">
               <ProductCounter
-                counter={productCount || 0}
+                counter={productCount}
                 onAdd={() => onPressIcons("add")}
                 onMinus={() => onPressIcons("minus")}
               />
               <TouchableOpacity onPress={handleRemove}>
-                <Label className="text-red-600  ">Remover</Label>
+                <Label className="text-red-600 ">Remover</Label>
               </TouchableOpacity>
             </View>
           )}

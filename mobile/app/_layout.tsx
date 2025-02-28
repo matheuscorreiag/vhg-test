@@ -53,6 +53,7 @@ function RootLayoutNav() {
             !headerNoShowRoutes.includes(route.name) && (
               <Header
                 hasBackButton={!headerNoShowBackRoutes.includes(route.name)}
+                route="/(tabs)"
               />
             ),
         }}

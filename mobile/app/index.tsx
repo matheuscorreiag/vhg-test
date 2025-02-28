@@ -4,6 +4,9 @@ import { Label } from "@/src/components/common/label";
 import { PageContainer } from "@/src/components/common/page-container";
 import { PageHeader } from "@/src/components/common/page-header";
 import { useLogin } from "@/src/hooks/user/useLogin";
+import { useUser } from "@/src/hooks/user/useUser";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { View } from "react-native";
 
@@ -13,6 +16,8 @@ interface LoginForm {
 }
 
 export default function LoginScreen() {
+  const router = useRouter();
+
   const {
     handleSubmit,
     control,
@@ -25,6 +30,11 @@ export default function LoginScreen() {
   async function onSubmit(data: LoginForm) {
     await loginUser(data);
   }
+  const { token } = useUser();
+
+  useEffect(() => {
+    if (token) router.push("/(tabs)");
+  }, [token]);
 
   return (
     <PageContainer>

@@ -31,7 +31,7 @@ export function useUpdateCart() {
       }
       cartStore.updateQuantity(productId, quantity);
       await queryClient.invalidateQueries({
-        queryKey: ["cart"],
+        queryKey: ["order"],
       });
     },
     onError: () => {

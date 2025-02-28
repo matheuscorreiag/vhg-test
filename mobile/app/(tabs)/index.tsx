@@ -4,7 +4,6 @@ import { ProductCard } from "@/src/components/common/product-card";
 import { FilterIcon } from "@/src/components/icons/filter";
 import { useOrder } from "@/src/hooks/cart/useOrder";
 import { useProducts } from "@/src/hooks/products/useProducts";
-import { useUser } from "@/src/hooks/user/useUser";
 import { useCartStore } from "@/src/store/cart";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
@@ -14,14 +13,8 @@ export default function HomeScreen() {
   const router = useRouter();
   const cartStore = useCartStore();
 
-  const { token } = useUser();
-
   const { products } = useProducts();
   const { order } = useOrder();
-
-  useEffect(() => {
-    if (token) router.push("/(tabs)");
-  }, [token]);
 
   useEffect(() => {
     if (order?.products && order?.products?.length > 0) {

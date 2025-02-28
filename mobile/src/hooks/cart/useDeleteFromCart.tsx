@@ -23,7 +23,7 @@ export function useDeleteFromCart() {
       cartStore.updateQuantity(productId, 0);
 
       await queryClient.invalidateQueries({
-        queryKey: ["cart"],
+        queryKey: ["order"],
       });
     },
     onError: () => {

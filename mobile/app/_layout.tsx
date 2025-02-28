@@ -14,10 +14,6 @@ import { Providers } from "@/src/components/common/providers";
 
 export { ErrorBoundary } from "expo-router";
 
-export const unstable_settings = {
-  initialRouteName: "(tabs)",
-};
-
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {

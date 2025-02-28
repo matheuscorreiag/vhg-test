@@ -7,19 +7,21 @@ import { useProducts } from "@/src/hooks/products/useProducts";
 import { useUser } from "@/src/hooks/user/useUser";
 import { useCartStore } from "@/src/store/cart";
 import { useRouter } from "expo-router";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { ScrollView, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { products } = useProducts();
-  const { token } = useUser();
-  const { order } = useOrder();
   const cartStore = useCartStore();
+
+  const { token } = useUser();
+
+  const { products } = useProducts();
+  const { order } = useOrder();
 
   useEffect(() => {
     if (token) router.push("/(tabs)");
-  }, [router, token]);
+  }, [token]);
 
   useEffect(() => {
     if (order?.products && order?.products?.length > 0) {

@@ -16,6 +16,8 @@ export class FindUserByEmailUseCase {
 
     if (!user || !user.password) throw new Error('User not found');
 
+    console.log(rawPassword, user.password);
+
     const isPasswordMatch = await this.compare.execute(
       rawPassword,
       user.password,
@@ -23,6 +25,8 @@ export class FindUserByEmailUseCase {
 
     if (!isPasswordMatch) throw new Error('Password does not match');
     delete user.password;
+
+    console.log('user', user);
     return user;
   }
 }

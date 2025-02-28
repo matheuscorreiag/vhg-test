@@ -16,6 +16,6 @@ export class ReviewProductUseCase {
 
     existingProduct.rating = rating;
 
-    this.productRepository.update(productId, existingProduct);
+    await this.productRepository.update(productId, existingProduct);
   }
 }

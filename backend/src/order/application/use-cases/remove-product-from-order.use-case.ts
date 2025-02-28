@@ -12,7 +12,7 @@ export class RemoveProductFromOrderUseCase {
     const currentOrder =
       await this.orderRepository.findCurrentOrderOrCreate(userId);
 
-    if (!currentOrder.id) {
+    if (!currentOrder?.id) {
       throw new Error('Order not found');
     }
 

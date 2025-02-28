@@ -14,10 +14,7 @@ export class UpsertProductToOrderUseCase {
     public readonly productRepository: ProductRepository,
   ) {}
 
-  async execute(
-    body: UpsertProductToOrderDto,
-    userId: string,
-  ): Promise<Order | void> {
+  async execute(body: UpsertProductToOrderDto, userId: string): Promise<Order> {
     const dbProduct = await this.productRepository.findById(body.productId);
 
     if (!dbProduct || !dbProduct.id) {
@@ -47,7 +44,9 @@ export class UpsertProductToOrderUseCase {
           (product) => product.productId !== body.productId,
         );
 
-        return await this.orderRepository.deleteOrderProduct(product.id);
+        await this.orderRepository.deleteOrderProduct(product.id);
+
+        return currentOrder;
       }
 
       currentOrder.products = currentOrder.products.map((product) => {
@@ -84,9 +83,11 @@ export class UpsertProductToOrderUseCase {
       imageUrl: dbProduct.imageUrl,
     });
 
-    return await this.orderRepository.saveProductOnCurrentOrder(
+    const updatedOrder = await this.orderRepository.saveProductOnCurrentOrder(
       currentOrder.id,
       orderProduct,
     );
+
+    return updatedOrder;
   }
 }

@@ -7,6 +7,8 @@ import { FindAllProductController } from '@product/infra/controllers/find-all-pr
 import { FindAllProductsUseCase } from '@product/application/use-cases/find-all-products.use-case';
 import { FindProductByIdController } from '@product/infra/controllers/find-product-by-id-controller';
 import { FindProductByIdUseCase } from '@product/application/use-cases/find-product-by-id.use.case';
+import { ReviewProductController } from '@product/infra/controllers/review-product.controller';
+import { ReviewProductUseCase } from '@product/application/use-cases/review-product.use-case';
 
 @Module({
   imports: [],
@@ -14,6 +16,7 @@ import { FindProductByIdUseCase } from '@product/application/use-cases/find-prod
     CreateProductController,
     FindAllProductController,
     FindProductByIdController,
+    ReviewProductController,
   ],
   providers: [
     {
@@ -23,6 +26,7 @@ import { FindProductByIdUseCase } from '@product/application/use-cases/find-prod
     CreateProductUseCase,
     FindAllProductsUseCase,
     FindProductByIdUseCase,
+    ReviewProductUseCase,
   ],
 })
 export class ProductModule {}

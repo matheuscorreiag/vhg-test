@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "e1e64ae0-36fb-4baf-a95a-99c971977455",
+		"name": "VHG DEMO API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20157816",
+		"_collection_link": "https://mamboo-team.postman.co/workspace/MAMBOO-TEAM~8c45812d-18bc-4acd-b155-ed7f902578d1/collection/20157816-e1e64ae0-36fb-4baf-a95a-99c971977455?action=share&source=collection_link&creator=20157816"
+	},
+	"item": [
+		{
+			"name": "PUBLIC",
+			"item": [
+				{
+					"name": "USERS",
+					"item": [
+						{
+							"name": "LOGIN USER",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"example@example.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SIGNUP USER",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"matheuscorreiag11\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/signup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PRIVATE",
+			"item": [
+				{
+					"name": "ORDERS",
+					"item": [
+						{
+							"name": "ADD PRODUCT TO ORDER",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productId\": \"529dbea0-603f-47c8-835d-9793aef117a1\",\n  \"quantity\": 1,\n  \"color\": \"red\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "COMPLETE ORDER",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"cardName\": \"João da Silva\",\n  \"cardNumber\": \"4111111111111111\",\n  \"expiration\": \"2025-12-31T00:00:00.000Z\",\n  \"securityCode\": \"123\",\n  \"addressName\": \"Residência João\",\n  \"addressLine1\": \"Rua das Flores, 123\",\n  \"addressLine2\": \"Apto 456\",\n  \"city\": \"São Paulo\",\n  \"region\": \"SP\",\n  \"zipCode\": \"01000-000\",\n  \"country\": \"Brasil\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET CURRENT ORDER",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/orders/current",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										"current"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "REMOVE PRODUCT FROM ORDER",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/orders/bb074f2f-7ad0-4bad-94f5-6d3eecf88f77",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										"bb074f2f-7ad0-4bad-94f5-6d3eecf88f77"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PRODUCTS",
+					"item": [
+						{
+							"name": "FIND ALL PRODUCTS",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE NEW PRODUCT",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"123\",\n  \"description\": \"aaa\",\n  \"price\": 123,\n  \"colors\": [\"red\", \"white\"],\n  \"imageUrl\": \"image_123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FIND PRODUCT BY ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products/4f64f88f-0c95-4fa5-bd08-df2b6172a51b",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"4f64f88f-0c95-4fa5-bd08-df2b6172a51b"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "USER",
+					"item": [
+						{
+							"name": "LOGIN",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"example@example.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.sendRequest({",
+							"    url: \"http://localhost:3000/api/users/login\",",
+							"    method: \"POST\",",
+							"    header: {",
+							"        \"Content-Type\": \"application/json\"",
+							"    },",
+							"    body: {",
+							"        mode: \"raw\",",
+							"        raw: JSON.stringify({",
+							"            email: \"example@example.com\",",
+							"            password: \"123456\"",
+							"        })",
+							"    }",
+							"}, function (err, response) {",
+							"    if (err) {",
+							"        console.error(err);",
+							"    } else {",
+							"        const jsonResponse = response.json();",
+							"        if (jsonResponse.data.token) {",
+							"            pm.environment.set(\"authToken\", 'Bearer ' + jsonResponse.data.token);",
+							"            console.log(\"Token setado:\", jsonResponse.data.token);",
+							"        } else {",
+							"            console.error(\"Token não encontrado na resposta.\");",
+							"        }",
+							"    }",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"const user = {",
+					"    email: \"matheuscorreigs@gmail.com\",",
+					"    password: \"123456\"",
+					"}",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api",
+			"type": "string"
+		}
+	]
+}

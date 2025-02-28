@@ -84,3 +84,9 @@ Siga os passos abaixo para instalar e rodar a aplicação:
    ```
 
 ---
+
+## Observações
+
+- Há um arquivo para a coleção de rotas VHG DEMO API.postman_collection.json para o postman
+- Você pode usar também no Swagger, é só acessar a url http://localhost:3000/api
+  no seu navegador

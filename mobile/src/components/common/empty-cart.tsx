@@ -9,7 +9,7 @@ export function EmptyCart() {
   return (
     <View className="flex-1 items-center justify-center">
       <View className="mb-12">
-        <CartIcon />
+        <CartIcon size="large" />
       </View>
       <Label className="text-2xl font-bold mb-4">Nenhum item</Label>
 

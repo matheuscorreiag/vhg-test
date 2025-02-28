@@ -61,12 +61,7 @@ function RootLayoutNav() {
         <Stack.Screen name="index" />
         <Stack.Screen name="(tabs)" />
 
-        <Stack.Screen
-          name="menu-modal"
-          options={{
-            presentation: "containedTransparentModal",
-          }}
-        />
+        <Stack.Screen name="menu-modal" />
       </Stack>
     </Providers>
   );

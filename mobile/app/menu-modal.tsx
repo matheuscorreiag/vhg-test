@@ -24,40 +24,35 @@ export default function MenuModal() {
   }
 
   return (
-    <Pressable
-      className="bg-transparent/30 h-full"
-      onPress={() => router.back()}
-    >
-      <SafeAreaView className="flex-1 bg-white w-5/6">
-        <PageContainer>
-          <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
-            {menus.map((item, index) => (
-              <View
-                key={index}
-                className={twMerge(
-                  "my-3",
-                  item.route && "border-b-2 border-gray-200"
-                )}
-              >
-                {/* Foi feito duas condicionais separadas para melhor leitura  */}
-                {item.route && (
-                  <Button
-                    title={item.title}
-                    color="menu"
-                    textAlign="left"
-                    textSize="large"
-                    textWeight="normal"
-                    padding="topOnly"
-                    className="rounded-none"
-                    onPress={() => onPressMenuOption(item.route as Href)}
-                  />
-                )}
-                {!item.route && <Label className="text-sm">{item.title}</Label>}
-              </View>
-            ))}
-          </ScrollView>
-        </PageContainer>
-      </SafeAreaView>
-    </Pressable>
+    <SafeAreaView className="flex-1 bg-white ">
+      <PageContainer>
+        <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
+          {menus.map((item, index) => (
+            <View
+              key={index}
+              className={twMerge(
+                "my-3",
+                item.route && "border-b-2 border-gray-200"
+              )}
+            >
+              {/* Foi feito duas condicionais separadas para melhor leitura  */}
+              {item.route && (
+                <Button
+                  title={item.title}
+                  color="menu"
+                  textAlign="left"
+                  textSize="large"
+                  textWeight="normal"
+                  padding="topOnly"
+                  className="rounded-none"
+                  onPress={() => onPressMenuOption(item.route as Href)}
+                />
+              )}
+              {!item.route && <Label className="text-sm">{item.title}</Label>}
+            </View>
+          ))}
+        </ScrollView>
+      </PageContainer>
+    </SafeAreaView>
   );
 }

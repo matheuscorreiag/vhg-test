@@ -25,7 +25,8 @@ export default function CheckoutScreen() {
   const router = useRouter();
   const { order } = useOrder();
 
-  if (!order) return null;
+  if (!order || !order.products.length) return null;
+
   return (
     <PageContainer>
       <PageHeader title="Checkout" />
@@ -36,13 +37,13 @@ export default function CheckoutScreen() {
 
         {/* Mostrar o primeiro produto do carrinho assim como no design */}
         <CartListProduct
-          id={order?.products[0].id}
-          productId={order?.products[0].productId}
-          name={order?.products[0].name}
-          color={order?.products[0].color}
-          price={order?.products[0].price}
-          quantity={order?.products[0].quantity}
-          imageUrl={order?.products[0].imageUrl}
+          id={order?.products[0]?.id}
+          productId={order?.products[0]?.productId}
+          name={order?.products[0]?.name}
+          color={order?.products[0]?.color}
+          price={order?.products[0]?.price}
+          quantity={order?.products[0]?.quantity}
+          imageUrl={order?.products[0]?.imageUrl}
           hideControls
         />
 

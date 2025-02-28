@@ -1,73 +1,86 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Estrutura do Projeto
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este projeto segue uma arquitetura em camadas baseada em princípios de Clean Architecture, organizada em domínios. Abaixo estão as principais pastas e suas responsabilidades:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 📁 `src`
 
-## Description
+### @types
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Contém definições de tipos globais para o projeto.
 
-## Installation
+### helpers
 
-```bash
-$ npm install
-```
+- `responses.ts`: Funções auxiliares para padronizar respostas HTTP.
 
-## Running the app
+### libs
 
-```bash
-# development
-$ npm run start
+- `prisma.module.ts` e `prisma.service.ts`: Módulos e serviços para configuração e integração com o Prisma ORM.
 
-# watch mode
-$ npm run start:dev
+## Domínios
 
-# production mode
-$ npm run start:prod
-```
+Cada domínio representa uma parte central da aplicação, organizado em três camadas principais:
 
-## Test
+### application
 
-```bash
-# unit tests
-$ npm run test
+- `dto`: Define objetos de transferência de dados para entrada e saída.
+- `mappers`: Converte entidades para DTOs e vice-versa.
+- `use-cases`: Casos de uso que representam a lógica de negócios principal, incluindo testes unitários.
 
-# e2e tests
-$ npm run test:e2e
+### domain
 
-# test coverage
-$ npm run test:cov
-```
+- `entities`: Define as entidades que representam os modelos do domínio.
+- `repositories`: Define contratos para repositórios.
+- `value-objects`: Objetos de valor que encapsulam lógica e validações específicas do domínio.
 
-## Support
+### infra
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- `controllers`: Controladores responsáveis por receber requisições HTTP e acionar os casos de uso.
+- `db`: Implementações dos repositórios utilizando o Prisma ORM.
+- `mocks`: Implementações fictícias para testes.
+- `modules`: Módulos para injeção de dependências.
+- `guards`: Middlewares para segurança e autenticação.
+- `decorators`: Decoradores personalizados para rotas públicas.
 
-## Stay in touch
+### Domínios Implementados
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- `order`: Gerenciamento de pedidos.
+- `product`: Gerenciamento de produtos.
+- `user`: Gerenciamento de usuários e autenticação.
 
-## License
+## Arquivos Principais
 
-Nest is [MIT licensed](LICENSE).
+- `app.module.ts`: Módulo principal que importa e configura os módulos da aplicação.
+- `main.ts`: Arquivo de bootstrap da aplicação.
+
+### Testes
+
+Testes unitários estão presentes nas pastas `__tests__`
+
+## Como Instalar
+
+Siga os passos abaixo para instalar e rodar a aplicação:
+
+1. Instale as dependências:
+   ```bash
+   npm install
+   ```
+2. Renomeie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente.
+3. Suba o container Docker:
+   ```bash
+   docker compose up -d
+   ```
+4. Execute as migrações do Prisma:
+   ```bash
+   npx prisma migrate deploy
+   ```
+5. Popule o banco de dados com dados iniciais:
+   ```bash
+   npm run seed
+   ```
+   - Será criado o usuário padrão: **example@example.com** com a senha **123456**.
+6. Inicie a aplicação em modo de desenvolvimento:
+   ```bash
+   npm run start:dev
+   ```
+
+---

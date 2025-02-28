@@ -45,15 +45,22 @@ async function main() {
     },
   });
 
+  const images = [
+    'https://i.ibb.co/jZg2JSw4/vhg1.png',
+    'https://i.ibb.co/B5gTy4H7/vhg2.png',
+    'https://i.ibb.co/Zp9yxLYN/vhg3.png',
+    'https://i.ibb.co/C3r249S5/vhg4.png',
+  ];
+  let i = 0;
   for (const product of products) {
     await prisma.product.create({
       data: {
         ...product,
-        imageUrl: `https://picsum.photos/id/${Math.floor(
-          Math.random() * 1000,
-        )}/200/300`,
+        imageUrl: images[i],
       },
     });
+
+    i++;
   }
 }
 main()

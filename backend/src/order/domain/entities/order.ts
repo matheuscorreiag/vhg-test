@@ -29,7 +29,10 @@ export class Order {
   }
 
   calculateTotal(): void {
-    this.total = this.products.reduce((acc, product) => acc + product.price, 0);
+    this.total = this.products.reduce(
+      (acc, product) => acc + product.price * product.quantity,
+      0,
+    );
   }
 
   calculateProductCount(): void {

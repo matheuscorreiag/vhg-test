@@ -1,6 +1,5 @@
 import { BackButtonIcon } from "@/assets/back-button";
 import { AppName } from "@/src/components/common/app-name";
-import { Label } from "@/src/components/common/label";
 import { Href, useRouter } from "expo-router";
 import { SafeAreaView, View } from "react-native";
 

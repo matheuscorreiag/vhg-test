@@ -42,6 +42,7 @@ export default function CheckoutScreen() {
           color={order?.products[0].color}
           price={order?.products[0].price}
           quantity={order?.products[0].quantity}
+          imageUrl={order?.products[0].imageUrl}
           hideControls
         />
 

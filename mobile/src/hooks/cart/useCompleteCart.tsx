@@ -21,7 +21,7 @@ export function useCompleteCart() {
       router.push("/cart/complete");
       cartStore.clearCart();
     },
-    onError: (error) => {
+    onError: () => {
       Toast.show({ type: "error", text1: "Erro ao concluir pedido" });
     },
   });
